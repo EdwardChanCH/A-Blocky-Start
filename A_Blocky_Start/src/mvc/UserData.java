@@ -87,14 +87,14 @@ public class UserData {
 			
 			// Decode the first line and store them in temporary variables
 			String usertype = scnr.next();
-			scnr.next(); // skip username, which we know
+			String username = scnr.next();
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
 			int totalTimeSpent = scnr.nextInt();
-			int totalAttempts = 1;
+			int totalAttempts = 0;
 			
 			// Extract username from filename
-			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+//			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
 			System.out.println(filename + "," + username);
 			
 			// Call constructor
@@ -169,6 +169,7 @@ public class UserData {
 			firstLine += totalTimeSpent;
 			firstLine += ',';
 			firstLine += totalAttempts;
+			firstLine += ',';
 			firstLine += '\n';
 			
 			writer.write(firstLine);
