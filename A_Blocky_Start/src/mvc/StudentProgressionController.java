@@ -6,36 +6,36 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class StudentProgressionController implements Controller{
+public class StudentProgressionController implements Controller {
 	
-	/** The view*/
-	private StudentProgressionView view;
-	
-	private Controller previousController;
-	
-	private StudentProgressionData data;
+	private static Controller previous;
+	private StudentProgressionView view = new StudentProgressionView();
+	private StudentProgressionData data = null;
 	
 	/**
-	 * Constructor for this class
+	 * Constructor.
 	 */
 	public StudentProgressionController() {
-		
-		//create view which stores UI elements
-		view = new StudentProgressionView();
-		
-		this.data = null;
-		
-		//insert view to game frame
 		view.insertPanelToFrame(Main.gameFrame);
-		
-		//adds functionality to UI elements
-		PopulateActionListener();
+		populateActionListener();
 	}
 	
+	@Override
+	public void onEnter(Controller previous) {
+		StudentProgressionController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+	
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
+	}
+
 	/**
-	 * Adds action listener to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
-	private void PopulateActionListener() {
+	private void populateActionListener() {
 		
 		//when back button is pressed, return to previous screen
 		view.backButtonAddActionListener(new ActionListener() {
@@ -43,8 +43,10 @@ public class StudentProgressionController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.studentProgressionController.onExit();
-				previousController.onEnter();
+				StudentProgressionController.previous.onEnter(Main.studentProgressionController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
+			
 		});
 		
 	}
@@ -54,7 +56,7 @@ public class StudentProgressionController implements Controller{
 	 * @param userData
 	 */
 	public void setUserData(UserData userData) {
-		this.data = new StudentProgressionData(userData);
+		data = new StudentProgressionData(userData);
 		ProgressionData progressionData;
 		
 		for (int i = 0; i < 10; i++) {
@@ -76,31 +78,4 @@ public class StudentProgressionController implements Controller{
 				);
 		}
 	}
-	
-	/**
-	 * 
-	 */
-	public void onExit() {
-		view.setVisibility(false);
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void onEnter() {
-		view.setVisibility(true);
-		Main.setColorblindOverlay();
-		this.previousController = Main.mainMenuController;
-	}
-	
-	/**
-	 * 
-	 */
-	public void OnEnterSpecial(Controller previousController) {
-		onEnter();
-		this.previousController = previousController; // Override default back button behavior
-		
-	}
-
 }

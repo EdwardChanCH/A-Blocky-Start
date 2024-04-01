@@ -27,15 +27,15 @@ public class LoginView implements View {
 	private Point usernameTextFieldLocation = new Point(400, 100);
 	private Point passwordLabelLocation = new Point(200, 200);
 	private Point passwordTextFieldLocation = new Point(400, 200);
-	private Point loginButtonLocation = new Point(450, 300);
-	private Point registerButtonLocation = new Point(250, 300);
+	private Point loginButtonLocation = new Point(425, 300);
+	private Point registerButtonLocation = new Point(200, 300);
 	private Point loginTitleLabelLocation = new Point(375,10);
 	private Point reminderLabelLocation = new Point(400, 80);
 	
 	// declaring size of UI elements
 	private Dimension labelSize = new Dimension(100,20);
 	private Dimension textFieldSize = new Dimension(200,20);
-	private Dimension loginButtonSize = new Dimension(100, 20);
+	private Dimension loginButtonSize = new Dimension(150, 40);
 	private Dimension loginTitleSize = new Dimension(120,36);
 	private Dimension longLabelSize = new Dimension(200, 20);
 	

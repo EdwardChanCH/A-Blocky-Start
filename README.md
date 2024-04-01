@@ -37,6 +37,9 @@ This game project was created as part of CompSci 2212B at Western University.
 * Background Music (CC BY license)
   * "[16-Bit;Genesis]Bad Apple!!(배드애플)", made by 브금맨 JX.
     * https://youtu.be/8XGJlvCOl50
+* Button Click Sound (CC BY license)
+  * "RC Copter Control Button 3", hosted on QuickSounds.com
+    * https://quicksounds.com/sound/20724/rc-copter-control-button-3
 
 Note:  
 * All images are hand-drawn by our team members.  

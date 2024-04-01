@@ -6,50 +6,51 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class HighScoreController implements Controller{
+public class HighScoreController implements Controller {
 	
+	private static Controller previous;
 	private static HighScoreView view = new HighScoreView();
-	private static HighScoreData data;
+	private static HighScoreData data = HighScoreData.importData(); // TODO
+	
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public HighScoreController() {
-		
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
-		
+	}
 	
+	@Override
+	public void onEnter(Controller previous) {
+		HighScoreController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+		updateHighScore();
+	}
+	
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
 	}
 	
 	/**
-	 * Adds functionality to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
-		//back button
+		// back button
 		view.backButtonAddActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.highScoreController.onExit();
-				Main.mainMenuController.onEnter();
+				HighScoreController.previous.onEnter(Main.highScoreController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}
 	
-	/**
-	 * Is called when showing high score view
-	 */
-	@Override
-	public void onEnter() {
-		view.setVisibility(true);
-		Main.setColorblindOverlay();
-		updateHighScore();
-	}
-	
 	private void updateHighScore() {
-		data = HighScoreData.importData();
 		//data.importData();
 		for(int i = 0; i < 5; i++) {
 			view.addHighscore(i, data.getUsername(i), data.getHighScore(i));
@@ -58,12 +59,4 @@ public class HighScoreController implements Controller{
 
 	}
 
-	/**
-	 * Is called when exiting high score view
-	 */
-	@Override
-	public void onExit() {
-		
-		view.setVisibility(false);
-	}
 }

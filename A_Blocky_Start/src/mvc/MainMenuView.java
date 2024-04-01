@@ -29,7 +29,6 @@ public class MainMenuView implements View {
 	final Dimension asidePanelSize = new Dimension(200, 600);
 	final Dimension gameTitleSize = new Dimension(600, 600); 
 	final Dimension labelSize = new Dimension(100, 100);
-	final Dimension creditSize = new Dimension(400, 100);
 	
 	/**
 	 * The size of Main menu buttons
@@ -51,7 +50,6 @@ public class MainMenuView implements View {
 	// game title
 	private LabelUI title = new LabelUI(gameTitleLocation, gameTitleSize, IconUI.gameTitleIcon);
 	private LabelUI mainMenuLabel = new LabelUI(mainMenuLabelLocation, labelSize, "Main Menu");
-	private LabelUI creditLabel = new LabelUI(creditSize, creditLocation, "CS2212B \n Doyle, Edward, Eunhak, Simon, Yuting, Build 1.0");
 			
 	// buttons declaration
 	private ButtonUI continueButton 	= new ButtonUI(ButtonSize, "", IconUI.continueButtonIcon);
@@ -83,7 +81,6 @@ public class MainMenuView implements View {
 		rootPanel.setBackground(Color.lightGray);
 		rootPanel.add(mainMenuLabel);
 		rootPanel.add(title);
-		rootPanel.add(creditLabel);
 		
 		// populate buttons
 		asidePanel.setLayout(new FlowLayout());

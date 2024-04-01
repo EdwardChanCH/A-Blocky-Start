@@ -128,7 +128,6 @@ public class MazeData {
 					if (maze[i][j] == MazeTypeEnum.SPAWN) {
 						spawnRow = i;
 						spawnColumn = j;
-						System.out.println("spawned");
 					}
 				}
 			}

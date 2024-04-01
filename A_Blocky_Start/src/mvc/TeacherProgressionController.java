@@ -11,28 +11,33 @@ import javax.swing.event.ChangeListener;
  */
 public class TeacherProgressionController implements Controller {
 
+	private static Controller previous;
 	private TeacherProgressionView view = new TeacherProgressionView();
-	
 	private TeacherProgressionData data = new TeacherProgressionData();
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public TeacherProgressionController() {
-
-		view = new TeacherProgressionView();
-
-		data = new TeacherProgressionData();
-
 		view.insertPanelToFrame(Main.gameFrame);
-
 		populateActionListener();
 	}
 
-	/**
-	 * 
-	 */
+	@Override
+	public void onEnter(Controller previous) {
+		TeacherProgressionController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
 
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
+	}
+
+	/**
+	 * Help to insert action listeners to UI elements.
+	 */
 	private void populateActionListener() {
 		
 		view.backButtonAddActionListener(new ActionListener() {
@@ -40,7 +45,8 @@ public class TeacherProgressionController implements Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.teacherProgressionController.onExit();
-				Main.mainMenuController.onEnter();
+				TeacherProgressionController.previous.onEnter(Main.teacherProgressionController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -88,23 +94,6 @@ public class TeacherProgressionController implements Controller {
 			
 			view.refreshPanel();
 		}
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void onEnter() {
-		view.setVisibility(true);
-		Main.setColorblindOverlay();
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void onExit() {
-		view.setVisibility(false);
 	}
 
 }

@@ -12,24 +12,38 @@ import java.io.IOException;
  */
 public class LoginController implements Controller {
 
-	// the view
+	private static final String TEACHERPassword = "GradeOurPorject100%";
+	private static final String DEVELOPERPassword = "TooManyMergeConflicts!";
+	
+	private static Controller previous;
 	private static LoginView view = new LoginView();
-	// the model
 	private static LoginData data = new LoginData();
 	
-	static final String TEACHERPassword = "GradeOurPorject100%";
-	static final String DEVELOPERPassword = "TooManyMergeConflicts!";
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public LoginController() {
 		view.insertPanelToFrame(Main.gameFrame);
 
 		populateActionListener();
 	}
+	
+	@Override
+	public void onEnter(Controller previous) {
+		LoginController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
+		// TODO
+		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
+	}
 
 	/**
-	 * Add action listener to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
@@ -68,35 +82,20 @@ public class LoginController implements Controller {
 				
 				//TODO: check condition, switch if save exist
 				Main.loginController.onExit();	
-				Main.mainMenuController.onEnter();
+				Main.mainMenuController.onEnter(Main.loginController);
 				//print login info
 				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
+				
+				Main.soundController.playSound(SoundController.buttonClick);
 		}});
 	}
 	
 	/**
-	 * Access the game mode
-	 * @return the mode of the game
+	 * Access the game mode.
+	 * @return The mode of the game
 	 */
 	public UserTypeEnum getMode() {
 		return data.getMode();
-	}
-
-	/**
-	 * Show the screen
-	 */
-	public void onEnter() {
-		view.setVisibility(true);
-		Main.setColorblindOverlay();
-	}
-
-	/**
-	 * Close the screen
-	 */
-	public void onExit() {
-		view.setVisibility(false);
-		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
-
 	}
 
 }

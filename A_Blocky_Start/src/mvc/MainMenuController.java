@@ -6,23 +6,33 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class MainMenuController implements Controller{
+public class MainMenuController implements Controller {
 	
-	//Main menu view
+	private static Controller previous;
 	private static MainMenuView view = new MainMenuView();
 	
 	/**
-	 * Main menu controller constructor
-	 * Called in Main
+	 * Constructor.
 	 */
 	public MainMenuController() {
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
+	}
+
+	@Override
+	public void onEnter(Controller previous) {
+		MainMenuController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
 	}
 	
 	/**
-	 * Adds functionality to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
@@ -33,10 +43,11 @@ public class MainMenuController implements Controller{
 			public void actionPerformed(ActionEvent e) {
 				//for debug purpose, continue button leads to gameplay view
 				Main.mainMenuController.onExit();
-				Main.gameplayController.onEnter();
+				Main.gameplayController.onEnter(Main.mainMenuController);
 				
 				
 				//TODO: implement this
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -46,6 +57,7 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO add action
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -55,7 +67,8 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
-				Main.tutorialController.onEnter();
+				Main.tutorialController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -67,15 +80,14 @@ public class MainMenuController implements Controller{
 				
 				Main.mainMenuController.onExit();
 				System.out.println(Main.loginController.getMode());
-				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
-					Main.teacherProgressionController.onEnter();
-				}else {
-					Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
+				if (Main.loginController.getMode() == UserTypeEnum.STUDENT) {
+					Main.studentProgressionController.onEnter(Main.mainMenuController);
+				} else {
+					Main.teacherProgressionController.onEnter(Main.mainMenuController);
 				}
-				
-				
-				
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
+			
 		});
 		
 		//high score button
@@ -84,7 +96,8 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
-				Main.highScoreController.onEnter();
+				Main.highScoreController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -94,7 +107,8 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.mainMenuController.onExit();
-				Main.settingsController.onEnter();
+				Main.settingsController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
@@ -103,30 +117,10 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.soundController.playSound(SoundController.buttonClick);
 				System.exit(0);
 			}
 		});
-	}
-
-	/**
-	 * Is called when entering main menu
-	 */
-	@Override
-	public void onEnter() {
-		
-		//shows the view
-		view.setVisibility(true);
-		Main.setColorblindOverlay();
-	}
-
-	/**
-	 * Is called when exiting 
-	 */
-	@Override
-	public void onExit() {
-		
-		//hides the view
-		view.setVisibility(false);
 	}
 	
 }
