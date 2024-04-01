@@ -29,7 +29,7 @@ import javax.swing.border.EmptyBorder;
 public class StudentProgressionView implements View {
 	
 	//Define sizes
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	private Dimension backButtonSize = new Dimension(30,30);
 
 	private Dimension containerSize = new Dimension(785, 800);

@@ -33,16 +33,16 @@ public class SettingsData {
 	/**
 	 * Volume of the game audio (percentage)
 	 */
-	private int volumeLevel;
+	private int volumePercentage;
 
 	/**
 	 * Initialize the settings data.
 	 */
-	public SettingsData() {
-		screenHeight = 800;
-		screenWidth = 600;
-		colourblindMode = false;
-		volumeLevel = 0;
+	public SettingsData(int screenWidth, int screenHeight, boolean colourblindMode, int volumePercentage) {
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+		this.colourblindMode = colourblindMode;
+		this.volumePercentage = volumePercentage;
 	}
 
 	/**
@@ -52,9 +52,6 @@ public class SettingsData {
 	 * @return SettingsData, or null if the file does not exist
 	 */
 	public static SettingsData importData() {
-		// Call constructor
-		SettingsData settings = new SettingsData();
-
 		// Read from CSV file
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			// Read the entire line of settings
@@ -64,24 +61,29 @@ public class SettingsData {
 			String[] parts = line.split(",");
 
 			// Ensure there are at least 4 components
+			int screenWidth;
+			int screenHeight;
+			boolean colourblindMode;
+			int volumePercentage;
 			if (parts.length < 4) {
 				throw new Exception("Too few arguments.");
 			} else {
-				settings.screenHeight = Integer.parseInt(parts[0]);
-				settings.screenWidth = Integer.parseInt(parts[1]);
-				settings.colourblindMode = Boolean.parseBoolean(parts[2]);
-				settings.volumeLevel = Integer.parseInt(parts[3]);
+				screenWidth = Integer.parseInt(parts[0]);
+				screenHeight = Integer.parseInt(parts[1]);
+				colourblindMode = Boolean.parseBoolean(parts[2]);
+				volumePercentage = Integer.parseInt(parts[3]);
 				
 			}
 			
 			// Close the reader
 			reader.close();
+			
+			// Call constructor
+			return new SettingsData(screenWidth, screenHeight, colourblindMode, volumePercentage);
 		} catch (Exception e) {
 			Main.errorLogController.addError(e);
 			return null;
 		}
-
-		return settings; // Return the populated SettingsData instance
 	}
 
 	/**
@@ -89,27 +91,20 @@ public class SettingsData {
 	 * Format: (without spaces)<br>
 	 * "screenHeight, screenWidth, colourblindMode, volumeLevel"<br>
 	 */
-	public void exportSettings() {
+	public void exportData() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 			// Concatenate settings into a single line, separated by commas
-			String settingsLine = screenHeight + "," + screenWidth + "," + colourblindMode + "," + volumeLevel;
+			String settingsLine = "" + screenWidth + "," + screenHeight + "," + colourblindMode + "," + volumePercentage;
 			
 			 // Write the encoded data string
 			writer.write(settingsLine);
 			
 			// Close the file
 			writer.close();
+			
 		} catch (Exception e) {
 			Main.errorLogController.addError(e);
 		}
-	}
-
-	/**
-	 * Access the screen height.
-	 * @return Screen height
-	 */
-	public int getScreenHeight() {
-		return screenHeight;
 	}
 
 	/**
@@ -118,6 +113,14 @@ public class SettingsData {
 	 */
 	public int getScreenWidth() {
 		return screenWidth;
+	}
+	
+	/**
+	 * Access the screen height.
+	 * @return Screen height
+	 */
+	public int getScreenHeight() {
+		return screenHeight;
 	}
 
 	/**
@@ -130,20 +133,10 @@ public class SettingsData {
 	
 	/**
 	 * Access the volume level.
-	 * @return Volume level
+	 * @return Volume percentage (0..100)
 	 */
-	public int getVolumeLevel() {
-		return volumeLevel;
-	}
-
-	/**
-	 * Mutate the screen height (if it is non-negative).
-	 * @param screenHeight Screen width
-	 */
-	public void setScreenHeight(int screenHeight) {
-		if (screenHeight >= 0) {
-			this.screenHeight = screenHeight;
-		}
+	public int getVolumePercentage() {
+		return volumePercentage;
 	}
 
 	/**
@@ -157,20 +150,31 @@ public class SettingsData {
 	}
 	
 	/**
+	 * Mutate the screen height (if it is non-negative).
+	 * @param screenHeight Screen width
+	 */
+	public void setScreenHeight(int screenHeight) {
+		if (screenHeight >= 0) {
+			this.screenHeight = screenHeight;
+		}
+	}
+	
+	/**
 	 * Mutate the colourblind mode.
 	 * @param colourblindMode Colourblind mode
 	 */
 	public void setColourblindMode(boolean colourblindMode) {
 		this.colourblindMode = colourblindMode;
+		System.out.println("Setter: " + this.colourblindMode + "," + colourblindMode);
 	}
 
 	/**
 	 * Mutate the volume level (if it is non-negative).
 	 * @param volumeLevel Volume level
 	 */
-	public void setVolumeLevel(int volumeLevel) {
-		if (volumeLevel >= 0) {
-			this.volumeLevel = volumeLevel;
+	public void setVolumeLevel(int volumePercentage) {
+		if ((volumePercentage >= 0) && (volumePercentage <= 100)) {
+			this.volumePercentage = volumePercentage;
 		}
 	}
 }

@@ -28,11 +28,10 @@ class SettingsDataTest {
 		SettingsData settings = SettingsData.importData();
 		assertNotNull(settings);
 		
-		 assertEquals(1280, settings.getScreenHeight());
-		 assertEquals(720, settings.getScreenWidth());
-		 assertTrue(settings.getColourblindMode());
-		 assertEquals(25, settings.getVolumeLevel());
-		
+		 assertEquals(800, settings.getScreenWidth());
+		 assertEquals(600, settings.getScreenHeight());
+		 assertFalse(settings.getColourblindMode());
+		 assertEquals(50, settings.getVolumePercentage());
 	}
 	
 	@Test
@@ -42,10 +41,10 @@ class SettingsDataTest {
 	    settings.setScreenHeight(settings.getScreenHeight() + 100);
 	    settings.setScreenWidth(settings.getScreenWidth() + 100);
 	    settings.setColourblindMode(!settings.getColourblindMode());
-	    settings.setVolumeLevel(settings.getVolumeLevel() + 10);
+	    settings.setVolumeLevel(settings.getVolumePercentage() + 10);
 	    
 	    // Export modified settings
-	    settings.exportSettings();
+	    settings.exportData();
 
 	    // Re-import to verify changes
 	    SettingsData modifiedSettings = SettingsData.importData();
@@ -53,19 +52,19 @@ class SettingsDataTest {
 	    assertEquals(settings.getScreenHeight(), modifiedSettings.getScreenHeight());
 	    assertEquals(settings.getScreenWidth(), modifiedSettings.getScreenWidth());
 	    assertEquals(settings.getColourblindMode(), modifiedSettings.getColourblindMode());
-	    assertEquals(settings.getVolumeLevel(), modifiedSettings.getVolumeLevel());
+	    assertEquals(settings.getVolumePercentage(), modifiedSettings.getVolumePercentage());
 	    
 	    modifiedSettings.setScreenHeight(settings.getScreenHeight() - 100);
 	    modifiedSettings.setScreenWidth(settings.getScreenWidth() - 100);
 	    modifiedSettings.setColourblindMode(!settings.getColourblindMode());
-	    modifiedSettings.setVolumeLevel(settings.getVolumeLevel() - 10);
+	    modifiedSettings.setVolumeLevel(settings.getVolumePercentage() - 10);
 	    
-	    modifiedSettings.exportSettings();
+	    modifiedSettings.exportData();
 	}
 	
 	@Test
 	void testGetScreenHeight() {
-        int expectedHeight = 1280;
+        int expectedHeight = 600;
         int actualHeight = settings.getScreenHeight();
         assertEquals(expectedHeight, actualHeight);
     }
@@ -80,7 +79,7 @@ class SettingsDataTest {
 	
 	@Test
 	void testNegativeSetScreenHeight() {
-        int expectedHeight = 1280;
+        int expectedHeight = 600;
         int tryNegativeHeight = -1400;
         settings.setScreenHeight(tryNegativeHeight);
         int actualHeight = settings.getScreenHeight();
@@ -90,7 +89,7 @@ class SettingsDataTest {
 	
 	@Test
     void testGetScreenWidth() {
-        int expectedWidth = 720;
+        int expectedWidth = 800;
         int actualWidth = settings.getScreenWidth();
         assertEquals(expectedWidth, actualWidth);
     }
@@ -105,7 +104,7 @@ class SettingsDataTest {
     
     @Test
     void testNegativeSetScreenWidth() {
-        int expectedWidth = 720;
+        int expectedWidth = 800;
         int tryNegativeWidth = -800;
         settings.setScreenWidth(tryNegativeWidth);
         int actualWidth = settings.getScreenWidth();
@@ -114,7 +113,7 @@ class SettingsDataTest {
 
     @Test
     void testGetColourblindMode() {
-        boolean expectedMode = true;
+        boolean expectedMode = false;
         boolean actualMode = settings.getColourblindMode();
         assertEquals(expectedMode, actualMode);
     }
@@ -129,8 +128,8 @@ class SettingsDataTest {
 
     @Test
     void testGetVolumeLevel() {
-        int expectedVolume = 25;
-        int actualVolume = settings.getVolumeLevel();
+        int expectedVolume = 50;
+        int actualVolume = settings.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
     
@@ -138,16 +137,16 @@ class SettingsDataTest {
     void testSetVolumeLevel() {
         int expectedVolume = 75;
         settings.setVolumeLevel(expectedVolume);
-        int actualVolume = settings.getVolumeLevel();
+        int actualVolume = settings.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
     
     @Test
     void testNegativeSetVolumeLevel() {
-    	int expectedVolume = 25;
+    	int expectedVolume = 50;
         int tryNegativeVolume = -85;
         settings.setVolumeLevel(tryNegativeVolume);
-        int actualVolume = settings.getVolumeLevel();
+        int actualVolume = settings.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
 	

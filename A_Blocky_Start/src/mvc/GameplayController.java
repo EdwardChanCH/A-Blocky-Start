@@ -62,8 +62,8 @@ public class GameplayController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.hidePauseMenu();
-				Main.gameplayController.OnExit();
-				Main.mainMenuController.OnEnter();
+				Main.gameplayController.onExit();
+				Main.mainMenuController.onEnter();
 			}
 		});
 		
@@ -111,15 +111,16 @@ public class GameplayController implements Controller{
 	 * 
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
 	}
 

@@ -86,7 +86,7 @@ class UserDataTest {
 	}
 
 	/**
-	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * Test method for {@link mvc.UserData#exportData()}.
 	 * @throws FileNotFoundException 
 	 */
 	@Test
@@ -104,7 +104,7 @@ class UserDataTest {
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
-		ud.exportUserData();
+		ud.exportData();
 
 		String filename = UserData.toFilename("student");
 		FileReader fileIn = new FileReader(filename);
@@ -117,7 +117,7 @@ class UserDataTest {
 	}
 	
 	/**
-	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * Test method for {@link mvc.UserData#exportData()}.
 	 * @throws FileNotFoundException 
 	 */
 	@Test
@@ -135,7 +135,7 @@ class UserDataTest {
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
-		ud.exportUserData();
+		ud.exportData();
 
 		String filename = UserData.toFilename("student");
 		FileReader fileIn = new FileReader(filename);
@@ -147,7 +147,7 @@ class UserDataTest {
 	}
 	
 	/**
-	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * Test method for {@link mvc.UserData#exportData()}.
 	 * @throws FileNotFoundException 
 	 */
 	@Test
@@ -165,7 +165,7 @@ class UserDataTest {
 		pd = ProgressionData.importData(stage2);
 		ud.addProgressionData(pd);
 		
-		ud.exportUserData();
+		ud.exportData();
 
 		String filename = UserData.toFilename("student");
 		FileReader fileIn = new FileReader(filename);
@@ -179,13 +179,13 @@ class UserDataTest {
 	}
 	
 	/**
-	 * Test method for {@link mvc.UserData#exportUserData()}.
+	 * Test method for {@link mvc.UserData#exportData()}.
 	 * @throws Exception 
 	 */
 	@Test
 	void testExportUserDataNotStudent() {
 		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacher", "GradeUs100%");
-		assertThrows(Exception.class, ()->{ud.exportUserData();});
+		assertThrows(Exception.class, ()->{ud.exportData();});
 	}
 
 	/**

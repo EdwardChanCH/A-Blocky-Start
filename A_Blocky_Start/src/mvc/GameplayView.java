@@ -26,7 +26,7 @@ public class GameplayView implements View {
 	
 	//sizes of UI elements
 	//Containers
-	private Dimension viewSize 					= Main.getDimension();
+	private Dimension viewSize 					= Main.getGameFrameDimension();
 	private Dimension actionchainContainerSize 	= new Dimension(200, 600);
 	private Dimension actionBuffetContainerSize = new Dimension(600, 200);
 	private Dimension mazeSize 					= new Dimension(600, 400);

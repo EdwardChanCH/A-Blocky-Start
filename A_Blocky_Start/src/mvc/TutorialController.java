@@ -32,7 +32,7 @@ public class TutorialController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.tutorialController.onExit();
-				Main.mainMenuController.OnEnter();
+				Main.mainMenuController.onEnter();
 			}
 		});
 	}
@@ -42,6 +42,7 @@ public class TutorialController {
 	 */
 	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 	
 	/**

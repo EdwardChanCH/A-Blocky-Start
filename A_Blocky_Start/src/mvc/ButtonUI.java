@@ -159,9 +159,9 @@ public class ButtonUI extends JButton{
 	 * @param dimension Dimension
 	 * @param position Position, can be null
 	 */
-	public ButtonUI(boolean visibility, Dimension dimension, Point position) {
+	public ButtonUI(boolean visibility, Dimension dimension, Point position, Color colour) {
 		setContentAreaFilled(true);
-		setBackground(new Color(0, 0, 0, 150));
+		setBackground(colour);
 		setBorder(BorderFactory.createEmptyBorder());
 		setFocusable(false);
 		setEnabled(visibility);

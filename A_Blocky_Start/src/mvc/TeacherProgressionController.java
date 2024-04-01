@@ -39,8 +39,8 @@ public class TeacherProgressionController implements Controller {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.teacherProgressionController.OnExit();
-				Main.mainMenuController.OnEnter();
+				Main.teacherProgressionController.onExit();
+				Main.mainMenuController.onEnter();
 			}
 		});
 		
@@ -94,15 +94,16 @@ public class TeacherProgressionController implements Controller {
 	 * 
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
 	}
 

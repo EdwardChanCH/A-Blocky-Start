@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.xml.crypto.Data;
-
 /**
  * LoginController controls LoginData and LoginView
  * @version 0.2
@@ -69,8 +67,8 @@ public class LoginController implements Controller {
 				}
 				
 				//TODO: check condition, switch if save exist
-				Main.loginController.OnExit();	
-				Main.mainMenuController.OnEnter();
+				Main.loginController.onExit();	
+				Main.mainMenuController.onEnter();
 				//print login info
 				System.out.println("Logged in with Username: " + view.getUsername() + ", Password: " + view.getPassword());
 		}});
@@ -87,15 +85,16 @@ public class LoginController implements Controller {
 	/**
 	 * Show the screen
 	 */
-	public void OnEnter() {
-		view.setVisibility(true);;
+	public void onEnter() {
+		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 
 	/**
 	 * Close the screen
 	 */
-	public void OnExit() {
-		view.setVisibility(false);;
+	public void onExit() {
+		view.setVisibility(false);
 		System.out.println("LoginData.getMode:: " + data.getActiveUserData().getUserType().toString() + " usernameInput: " + data.getActiveUserData().getUsername() + ", usernamePassword: " + data.getActiveUserData().getPassword());
 
 	}

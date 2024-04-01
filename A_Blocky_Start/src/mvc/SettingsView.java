@@ -135,26 +135,48 @@ public class SettingsView implements View {
 	
 	/**
 	 * 
-	 * @return the selected option in colourblind combobox
+	 * @return the selected option in color blind combobox
 	 */
-	public String getColourBlindSetting() {
-		return (String) colourBlindComboBox.getSelectedItem();
+	public String getResolutionField() {
+		return (String) resolutionComboBox.getSelectedItem();
 	}
 	
 	/**
 	 * 
-	 * @return the selected option in color blind combobox
+	 * @return the selected option in colourblind combobox
 	 */
-	public String getResolutionSetting() {
-		return (String) resolutionComboBox.getSelectedItem();
+	public String getColourBlindField() {
+		return (String) colourBlindComboBox.getSelectedItem();
 	}
 	
 	/**
 	 * 
 	 * @return the selected level in volume level slider
 	 */
-	public int getVolumeLevelSetting() {
+	public int getVolumeLevelField() {
 		return volumeLevelSlider.getValue();
+	}
+	
+	public void setResolutionField(int width, int height) {
+		int option = -1;
+		if ((width == 800) && (height == 600)) {
+			option = 0;
+		}
+		resolutionComboBox.setSelectedItem(option);
+	}
+	
+	public void setColourBlindField(boolean active) {
+		int option = -1;
+		if (active) {
+			option = 1;
+		} else {
+			option = 0;
+		}
+		colourBlindComboBox.setSelectedIndex(option);
+	}
+	
+	public void setVolumeLevelField(int value) {
+		volumeLevelSlider.setValue(value);
 	}
 	
 	// Action Listeners

@@ -17,16 +17,16 @@ import javax.swing.border.EmptyBorder;
 public class MainMenuView implements View {
 	
 	// size of this view
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	
 	// locations
 	final Point asidenPanelLocation = new Point(600, 0);
-	final Point gameTitleLocation = new Point(0, -10);  // game title should be top of screen
+	final Point gameTitleLocation = new Point(0, 0);  // game title should be top of screen
 	final Point mainMenuLabelLocation = new Point(670, 40);
 	final Point creditLocation = new Point(200, 500);
 	
 	// sizes
-	final Dimension asidePanelSize = new Dimension(200, 800);
+	final Dimension asidePanelSize = new Dimension(200, 600);
 	final Dimension gameTitleSize = new Dimension(600, 600); 
 	final Dimension labelSize = new Dimension(100, 100);
 	final Dimension creditSize = new Dimension(400, 100);
@@ -46,7 +46,7 @@ public class MainMenuView implements View {
 	
 
 	/** panel for visual effect*/
-	PanelUI asidePanel 	= new PanelUI(asidenPanelLocation, asidePanelSize, Color.white);
+	PanelUI asidePanel 	= new PanelUI(asidenPanelLocation, asidePanelSize, IconUI.lightOrange);
 	
 	// game title
 	private LabelUI title = new LabelUI(gameTitleLocation, gameTitleSize, IconUI.gameTitleIcon);

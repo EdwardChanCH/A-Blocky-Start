@@ -32,8 +32,8 @@ public class HighScoreController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.highScoreController.OnExit();
-				Main.mainMenuController.OnEnter();
+				Main.highScoreController.onExit();
+				Main.mainMenuController.onEnter();
 			}
 		});
 	}
@@ -42,8 +42,9 @@ public class HighScoreController implements Controller{
 	 * Is called when showing high score view
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 		updateHighScore();
 	}
 	
@@ -61,7 +62,7 @@ public class HighScoreController implements Controller{
 	 * Is called when exiting high score view
 	 */
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		
 		view.setVisibility(false);
 	}

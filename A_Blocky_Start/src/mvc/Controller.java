@@ -12,11 +12,11 @@ public interface Controller {
 	/**
 	 * Call this when entering a screen.
 	 */
-	public void OnEnter();
+	public void onEnter();
 	
 	/**
 	 * Call this when exiting a screen.
 	 */
-	public void OnExit();
+	public void onExit();
 	
 }

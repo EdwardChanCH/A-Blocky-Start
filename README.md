@@ -29,13 +29,24 @@ Winter 2024
 
 This game project was created as part of CompSci 2212B at Western University.  
 
+### e. 3rd Party Resources
+
+* *Media Type (copyright license)*
+  * *"Source Title", creator*
+    * *Source URL*
+* Background Music (CC BY license)
+  * "[16-Bit;Genesis]Bad Apple!!(배드애플)", made by 브금맨 JX.
+    * https://youtu.be/8XGJlvCOl50
+
+Note:  
+* All images are hand-drawn by our team members.  
+
 ## 1. Short Description
 
 (TODO: A short description of your software and what it does.)  
 
 ## 2. Required Libraries & 3rd Party Tools
 
-(TODO: A list of the required libraries and third party tools required to run or build your software (include version numbers).)  
 * *Library/Tool*
   * *Version Number*
 * Java JDK-21

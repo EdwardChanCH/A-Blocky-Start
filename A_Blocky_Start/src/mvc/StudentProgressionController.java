@@ -42,8 +42,8 @@ public class StudentProgressionController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.studentProgressionController.OnExit();
-				previousController.OnEnter();
+				Main.studentProgressionController.onExit();
+				previousController.onEnter();
 			}
 		});
 		
@@ -80,7 +80,7 @@ public class StudentProgressionController implements Controller{
 	/**
 	 * 
 	 */
-	public void OnExit() {
+	public void onExit() {
 		view.setVisibility(false);
 	}
 
@@ -88,8 +88,9 @@ public class StudentProgressionController implements Controller{
 	 * 
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 		this.previousController = Main.mainMenuController;
 	}
 	
@@ -97,7 +98,7 @@ public class StudentProgressionController implements Controller{
 	 * 
 	 */
 	public void OnEnterSpecial(Controller previousController) {
-		OnEnter();
+		onEnter();
 		this.previousController = previousController; // Override default back button behavior
 		
 	}

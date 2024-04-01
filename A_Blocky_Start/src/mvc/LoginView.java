@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class LoginView implements View {
 	
 	// declaring bounds for components for this panel
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	
 	// root panel
 	private static JPanel rootPanel;

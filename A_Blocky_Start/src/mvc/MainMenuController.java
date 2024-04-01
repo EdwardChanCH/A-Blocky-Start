@@ -32,8 +32,8 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//for debug purpose, continue button leads to gameplay view
-				Main.mainMenuController.OnExit();
-				Main.gameplayController.OnEnter();
+				Main.mainMenuController.onExit();
+				Main.gameplayController.onEnter();
 				
 				
 				//TODO: implement this
@@ -54,7 +54,7 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
+				Main.mainMenuController.onExit();
 				Main.tutorialController.onEnter();
 			}
 		});
@@ -65,10 +65,10 @@ public class MainMenuController implements Controller{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Main.mainMenuController.OnExit();
+				Main.mainMenuController.onExit();
 				System.out.println(Main.loginController.getMode());
 				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
-					Main.teacherProgressionController.OnEnter();
+					Main.teacherProgressionController.onEnter();
 				}else {
 					Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
 				}
@@ -83,8 +83,8 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
-				Main.highScoreController.OnEnter();
+				Main.mainMenuController.onExit();
+				Main.highScoreController.onEnter();
 			}
 		});
 		
@@ -93,8 +93,8 @@ public class MainMenuController implements Controller{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
-				Main.settingsController.OnEnter();
+				Main.mainMenuController.onExit();
+				Main.settingsController.onEnter();
 			}
 		});
 		
@@ -112,17 +112,18 @@ public class MainMenuController implements Controller{
 	 * Is called when entering main menu
 	 */
 	@Override
-	public void OnEnter() {
+	public void onEnter() {
 		
 		//shows the view
 		view.setVisibility(true);
+		Main.setColorblindOverlay();
 	}
 
 	/**
 	 * Is called when exiting 
 	 */
 	@Override
-	public void OnExit() {
+	public void onExit() {
 		
 		//hides the view
 		view.setVisibility(false);

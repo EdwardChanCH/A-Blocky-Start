@@ -73,7 +73,6 @@ public class UserData {
 	
 	/**
 	 * Decode the encoded data stored in a user data file.<br>
-	 * 
 	 * @see exportData() for details. 
 	 * @param filename Filename of the user data (prefix + username + suffix)<br>
 	 * @return UserData, or null if the file does not exist.
@@ -87,15 +86,15 @@ public class UserData {
 			
 			// Decode the first line and store them in temporary variables
 			String usertype = scnr.next();
-			scnr.next(); // skip username, which we know
+			String username = scnr.next();
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
 			int totalTimeSpent = scnr.nextInt();
 			int totalAttempts = 1;
 			
-			// Extract username from filename
-			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
-			System.out.println(filename + "," + username);
+			// Extract username from filename // TODO
+			//String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+			//System.out.println(filename + "," + username);
 			
 			// Call constructor
 			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
@@ -136,7 +135,7 @@ public class UserData {
 	 * "progressionData2"<br>
 	 * "..."<br>
 	 */
-	public void exportUserData() {
+	public void exportData() {
 	
 		try {
 			// exception for teachers and developers

@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author Chun Ho Chan (Edward)
  * @author Eunhak Kim
  */
-public class ErrorLogController implements Controller {
+public class ErrorLogController {
 
 	private static final String filename = "game_errorlog.txt";
 	
@@ -20,18 +20,6 @@ public class ErrorLogController implements Controller {
 	 */
 	public ErrorLogController() {
 		// do nothing
-	}
-	
-	@Override
-	public void OnEnter() {
-		// do nothing
-		
-	}
-
-	@Override
-	public void OnExit() {
-		// do nothing
-		
 	}
 	
 	/**

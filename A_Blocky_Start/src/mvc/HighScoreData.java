@@ -186,7 +186,7 @@ public class HighScoreData {
 	 * @return True if index is out-of-bound, false otherwise
 	 */
 	public boolean isIndexOutOfBound(int index) {
-		return ((0 > index) || (index >= entriesMax));
+		return ((index < 0) || (index >= entriesMax));
 	}
 
 }

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class TutorialView implements View {
 	
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	
 	// Contains all the tutorial prompts
 	private Dimension tutorialContainerSize = new Dimension(800, 500);
