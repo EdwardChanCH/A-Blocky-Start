@@ -1,9 +1,0 @@
->> Error << java.lang.NullPointerException: Cannot invoke "javax.sound.sampled.Clip.getControl(javax.sound.sampled.Control$Type)" because "mvc.SoundController.buttonClick" is null
->> Error << java.lang.NullPointerException: Cannot invoke "javax.sound.sampled.FloatControl.setValue(float)" because "mvc.SoundController.buttonClickVolume" is null
->> Error << java.lang.IllegalArgumentException: Requested value 50.0 exceeds allowable maximum value 6.0206.
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
->> Warning << java.io.FileNotFoundException: .\userdata\_userdata.csv (The system cannot find the file specified)
