@@ -4,8 +4,6 @@
 
 ### a. Team Members:
 
-* *Full Name*
-  * *Email Address*
 * Chun Ho Chan (Edward)
   * edwardchanchunho@gmail.com
 * Yuting Hou
@@ -31,9 +29,6 @@ This game project was created as part of CompSci 2212B at Western University.
 
 ### e. 3rd Party Resources
 
-* *Media Type (copyright license)*
-  * *"Source Title", creator*
-    * *Source URL*
 * Background Music (CC BY license)
   * "[16-Bit;Genesis]Bad Apple!!(배드애플)", made by 브금맨 JX.
     * https://youtu.be/8XGJlvCOl50
