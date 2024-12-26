@@ -3,8 +3,8 @@ package mvc;
 import java.util.ArrayList;
 
 /**
- * This model class stores the entries in the Student Progression Screen. 
- * At most 10 entries are stored at a time in the page. (lazy loading pattern)
+ * This model class stores the entries in the Student Progression Screen.<br>
+ * At most 10 entries are stored at a time in the page. (lazy loading pattern)<br>
  * @version 1.0
  * @since Mar 14, 2024
  * @author Doyle Blacklock

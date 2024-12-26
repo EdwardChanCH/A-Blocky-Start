@@ -4,91 +4,104 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
  * 
  */
-public class SettingsController implements Controller{
+public class SettingsController implements Controller {
 	
+	private static Controller previous;
 	private static SettingsView view = new SettingsView();
-	
-	private static SettingsData data = new SettingsData();
+	private static SettingsData data = SettingsData.importData();
 	
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public SettingsController() {
-		
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
+		view.setResolutionField(data.getScreenWidth(), data.getScreenHeight());
+		view.setColourBlindField(data.getColourblindMode());
+		view.setVolumeLevelField(data.getVolumePercentage());
+	}
+	
+	@Override
+	public void onEnter(Controller previous) {
+		SettingsController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
 	}
 	
 	/**
-	 * 
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
-		//when back button is pressed
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				Main.settingsController.OnExit();
-				Main.mainMenuController.OnEnter();
-				updateSetting();
+				Main.settingsController.onExit();
+				SettingsController.previous.onEnter(Main.settingsController);
+				Main.soundController.playSound(SoundController.buttonClick);
+			}
+		});
+		
+		view.resolutionComboBox(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.setScreenWidth(800);
+				data.setScreenHeight(600);
+				data.exportData();
 			}
 			
+		});
+		
+		view.colourBlindComboBox(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				data.setColourblindMode(view.getColourBlindField().equalsIgnoreCase("On"));
+				data.exportData();
+			}
+			
+		});
+		
+		view.volumeLevelSlider(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				data.setVolumeLevel(view.getVolumeLevelField());
+				Main.soundController.updateVolume((float) data.getVolumePercentage());
+				data.exportData();
+			}
 			
 		});
 	}
 	
-	/**
-	 * This function updates setting data 
-	 * @author Simon
-	 */
-	private void updateSetting() {
-		//TODO: get colorblind settigs from view and store in data
-		String colourblindStr = view.getColourBlindSetting();
-		
-		if (colourblindStr.compareTo("On") == 0) {
-			data.setColourblindMode(true);
-		}		
-		
-		else {
-			data.setColourblindMode(false);
-		}
-		
-		
-	}
-	public boolean isColourblindMode() {		
-		
+	public boolean isColourblindActive() {		
 		return data.getColourblindMode();
-		
-	}
-	
-	
-	/**
-	 * 
-	 */
-	@Override
-	public void OnEnter() {
-		view.setVisibility(true);
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void OnExit() {
-		view.setVisibility(false);
 	}
 	
 	/**
 	 * get the dimension from the data
 	 */
 	public Dimension getDimension() {
-		return new Dimension(data.getScreenHeight(), data.getScreenWidth());
+		return new Dimension(data.getScreenWidth(), data.getScreenHeight());
+	}
+	
+	/**
+	 * get the volume from the data
+	 */
+	public int getVolumePercentage() {
+		return data.getVolumePercentage();
 	}
 
 }

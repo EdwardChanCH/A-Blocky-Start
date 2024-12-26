@@ -33,7 +33,7 @@ class HighScoreDataTest {
     
     @AfterEach
     void tearDown() {
-    	backupData.exportHighScore();
+    	backupData.exportData();
     }  
 
     @Test
@@ -56,7 +56,7 @@ class HighScoreDataTest {
     @Test
     void testExportHighScore() {
         highScoreData.addNameScore("TestUser", 999);
-        highScoreData.exportHighScore();
+        highScoreData.exportData();
 
         HighScoreData importedData = HighScoreData.importData();
        

@@ -10,13 +10,13 @@ package mvc;
 public interface Controller {
 	
 	/**
-	 * Call this when entering a screen.
+	 * Call this to load a screen.
 	 */
-	public void OnEnter();
+	public void onEnter(Controller previous);
 	
 	/**
-	 * Call this when exiting a screen.
+	 * Call this to unload a screen.
 	 */
-	public void OnExit();
+	public void onExit();
 	
 }

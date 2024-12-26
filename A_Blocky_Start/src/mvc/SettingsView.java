@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
 
 /**
  * @author Yuting
@@ -96,20 +97,10 @@ public class SettingsView implements View {
 		volumeLevelSlider.setPaintLabels(true);
 		rootPanel.add(volumeLevelSlider);
 		
-		
-		// colourblind combobox label
 		rootPanel.add(colourBlindLabel);
-		
-		// resolution combobox label
 		rootPanel.add(resolutionLabel);
-		
-		// volume level label
 		rootPanel.add(volumeLevelLabel);
-		
-		// setting label
 		rootPanel.add(settingsLabel);
-		
-		// back button
 		rootPanel.add(backButton);
 	}
 	
@@ -135,32 +126,68 @@ public class SettingsView implements View {
 	
 	/**
 	 * 
-	 * @return the selected option in colourblind combobox
+	 * @return the selected option in color blind combobox
 	 */
-	public String getColourBlindSetting() {
-		return (String) colourBlindComboBox.getSelectedItem();
+	public String getResolutionField() {
+		return (String) resolutionComboBox.getSelectedItem();
 	}
 	
 	/**
 	 * 
-	 * @return the selected option in color blind combobox
+	 * @return the selected option in colourblind combobox
 	 */
-	public String getResolutionSetting() {
-		return (String) resolutionComboBox.getSelectedItem();
+	public String getColourBlindField() {
+		return (String) colourBlindComboBox.getSelectedItem();
 	}
 	
 	/**
 	 * 
 	 * @return the selected level in volume level slider
 	 */
-	public int getVolumeLevelSetting() {
+	public int getVolumeLevelField() {
 		return volumeLevelSlider.getValue();
+	}
+	
+	public void setResolutionField(int width, int height) {
+		int option = -1;
+		if ((width == 800) && (height == 600)) {
+			option = 0;
+		}
+		resolutionComboBox.setSelectedItem(option);
+	}
+	
+	public void setColourBlindField(boolean active) {
+		int option = -1;
+		if (active) {
+			option = 1;
+		} else {
+			option = 0;
+		}
+		colourBlindComboBox.setSelectedIndex(option);
+	}
+	
+	public void setVolumeLevelField(int value) {
+		volumeLevelSlider.setValue(value);
 	}
 	
 	// Action Listeners
 	
-	public void backButtonAddActionListener(ActionListener actionListener) {
+	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
+	}
+	
+	public void resolutionComboBox(ActionListener actionListener) {
+		resolutionComboBox.addActionListener(actionListener);
+	}
+	
+	public void colourBlindComboBox(ActionListener actionListener) {
+		colourBlindComboBox.addActionListener(actionListener);
+	}
+	
+	// Change Listeners
+	
+	public void volumeLevelSlider(ChangeListener changeListener) {
+		volumeLevelSlider.addChangeListener(changeListener);
 	}
 
 }

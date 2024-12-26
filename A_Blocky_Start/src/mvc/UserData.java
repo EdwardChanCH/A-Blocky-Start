@@ -73,7 +73,6 @@ public class UserData {
 	
 	/**
 	 * Decode the encoded data stored in a user data file.<br>
-	 * 
 	 * @see exportData() for details. 
 	 * @param filename Filename of the user data (prefix + username + suffix)<br>
 	 * @return UserData, or null if the file does not exist.
@@ -94,7 +93,7 @@ public class UserData {
 			int totalAttempts = 0;
 			
 			// Extract username from filename
-//			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+      // String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
 			System.out.println(filename + "," + username);
 			
 			// Call constructor
@@ -136,7 +135,7 @@ public class UserData {
 	 * "progressionData2"<br>
 	 * "..."<br>
 	 */
-	public void exportUserData() {
+	public void exportData() {
 	
 		try {
 			// exception for teachers and developers
@@ -150,7 +149,7 @@ public class UserData {
 			fileOut.createNewFile(); // create a new file if not found
 			
 			// Wipe the user data file
-			FileWriter writer = new FileWriter(fileOut, true);
+			FileWriter writer = new FileWriter(fileOut);
 			writer.write(""); 
 			
 			// Recalculate all statistics
@@ -318,6 +317,14 @@ public class UserData {
 	 */
 	public void addProgressionData(ProgressionData progression) {
 		progressionList.add(progression);
+	}
+	
+	/**
+	 * Reset all progression data.
+	 */
+	public void resetProgressionData() {
+		progressionList.clear();
+		addProgressionData(new ProgressionData(0));
 	}
 	
 	/**

@@ -1,0 +1,11 @@
+﻿S,_,_,_,_,_,_,K,W
+T,W,T,T,T,T,T,_,T
+T,_,_,_,_,_,W,_,T
+T,_,T,T,T,_,T,_,T
+T,_,T,E,T,_,T,_,T
+T,_,W,_,_,_,T,_,T
+T,_,T,T,T,W,T,_,T
+W,K,_,_,_,_,_,K,T
+T,T,T,T,T,T,T,W,T
+"""Collect all 3 packages and move to the exit without touching any bombs.""",,,,,,,,
+"""Try using this nested for-loop: Start, Loop(count 7 - 0 times, line = 5), Forward, Goto(line = 2), Right, Goto(line = 2), End.""",,,,,,,,

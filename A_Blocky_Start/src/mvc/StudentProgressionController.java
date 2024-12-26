@@ -1,69 +1,75 @@
 package mvc;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ChangeListener;
+
 /**
- * 
+ * This controller class manages the student progression screen.
+ * @version 1.0
+ * @since March 11, 2024
+ * @author Doyle Blacklock
  */
-public class StudentProgressionController implements Controller{
+public class StudentProgressionController implements Controller {
 	
-	/** The view*/
-	private StudentProgressionView view;
-	
-	private Controller previousController;
-	
+	private static Controller previous;
+	private StudentProgressionView view = new StudentProgressionView();
 	private StudentProgressionData data;
 	
 	/**
-	 * Constructor for this class
+	 * Constructor.
 	 */
 	public StudentProgressionController() {
-		
-		//create view which stores UI elements
-		view = new StudentProgressionView();
-		
-		this.data = null;
-		
-		//insert view to game frame
 		view.insertPanelToFrame(Main.gameFrame);
-		
-		//adds functionality to UI elements
-		PopulateActionListener();
+		populateActionListener();
 	}
 	
+	@Override
+	public void onEnter(Controller previous) {
+		StudentProgressionController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+	
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
+	}
+
 	/**
-	 * Adds action listener to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
-	private void PopulateActionListener() {
+	private void populateActionListener() {
 		
 		//when back button is pressed, return to previous screen
-		view.backButtonAddActionListener(new ActionListener() {
+		view.backButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.studentProgressionController.OnExit();
-				previousController.OnEnter();
+				Main.studentProgressionController.onExit();
+				StudentProgressionController.previous.onEnter(Main.studentProgressionController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
+			
 		});
 		
 	}
 	
-	/**
-	 * 
-	 * @param userData
-	 */
 	public void setUserData(UserData userData) {
-		this.data = new StudentProgressionData(userData);
-		ProgressionData progressionData;
+		data = new StudentProgressionData(userData);
 		
-		for (int i = 0; i < 10; i++) {
-			
+		ProgressionData progressionData;
+		for (int i = 0; i < data.entriesPerPage; i++) {
 			progressionData = data.getProgression(i);
 
 			if (progressionData == null) {
 				break;
 			}
+			
+			ButtonUI playButton = new ButtonUI(new Dimension(400, 20), "", IconUI.playButtonIcon);
+			playButton.addActionListener(new PlayButtonListener(i));
 			
 			view.setEntry(
 					i,
@@ -72,34 +78,33 @@ public class StudentProgressionController implements Controller{
 					progressionData.getShortestSteps(),
 					progressionData.getHighestScore(), 
 					progressionData.getTimeSpent(), 
-					progressionData.getAttempts()
-				);
+					progressionData.getAttempts(), 
+					playButton
+					);
 		}
-	}
-	
-	/**
-	 * 
-	 */
-	public void OnExit() {
-		view.setVisibility(false);
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void OnEnter() {
-		view.setVisibility(true);
-		this.previousController = Main.mainMenuController;
-	}
-	
-	/**
-	 * 
-	 */
-	public void OnEnterSpecial(Controller previousController) {
-		OnEnter();
-		this.previousController = previousController; // Override default back button behavior
 		
 	}
+	
+	// Action Listeners
+	
+	private class PlayButtonListener implements ActionListener {
 
+		private int stageID;
+		
+		public PlayButtonListener(int stageID) {
+			this.stageID = stageID;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			UserData activeUser = Main.loginController.getActiveUserData();
+			Main.gameplayController.setupStage(activeUser, stageID);
+			
+			Main.studentProgressionController.onExit();
+			Main.gameplayController.onEnter(Main.studentProgressionController);
+			Main.soundController.playSound(SoundController.buttonClick);
+		}
+		
+	}
+	
 }

@@ -1,0 +1,11 @@
+﻿_,_,_,W,W,W,W,W,_
+_,_,_,W,K,S,K,W,W
+_,_,_,W,W,W,_,K,E
+_,_,_,_,_,W,W,W,W
+_,_,_,_,_,_,_,_,_
+_,_,_,_,_,_,_,_,_
+_,_,_,_,_,_,_,_,_
+_,_,_,_,_,_,_,_,_
+_,_,_,_,_,_,_,_,_
+"""Collect all 3 packages and move to the exit.""",,,,,,,,
+"""Try this: Start, Back, Forward, Forward, Right, Forward, Left, Forward, Forward, End.""",,,,,,,,

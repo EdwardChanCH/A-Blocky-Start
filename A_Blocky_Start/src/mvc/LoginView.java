@@ -1,11 +1,7 @@
 package mvc;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.util.EventListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +13,7 @@ import javax.swing.JPanel;
 public class LoginView implements View {
 	
 	// declaring bounds for components for this panel
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 	
 	// root panel
 	private static JPanel rootPanel;
@@ -27,15 +23,15 @@ public class LoginView implements View {
 	private Point usernameTextFieldLocation = new Point(400, 100);
 	private Point passwordLabelLocation = new Point(200, 200);
 	private Point passwordTextFieldLocation = new Point(400, 200);
-	private Point loginButtonLocation = new Point(450, 300);
-	private Point registerButtonLocation = new Point(250, 300);
+	private Point loginButtonLocation = new Point(425, 300);
+	private Point registerButtonLocation = new Point(200, 300);
 	private Point loginTitleLabelLocation = new Point(375,10);
 	private Point reminderLabelLocation = new Point(400, 80);
 	
 	// declaring size of UI elements
 	private Dimension labelSize = new Dimension(100,20);
 	private Dimension textFieldSize = new Dimension(200,20);
-	private Dimension loginButtonSize = new Dimension(100, 20);
+	private Dimension loginButtonSize = new Dimension(150, 40);
 	private Dimension loginTitleSize = new Dimension(120,36);
 	private Dimension longLabelSize = new Dimension(200, 20);
 	
@@ -44,8 +40,8 @@ public class LoginView implements View {
 	TextFieldUI usernameTextField = new TextFieldUI(usernameTextFieldLocation, textFieldSize);
 	LabelUI passwordFieldLabel = new LabelUI(passwordLabelLocation, labelSize, "Password:");
 	TextFieldUI passwordTextField = new TextFieldUI(passwordTextFieldLocation, textFieldSize);
-	ButtonUI loginButton = new ButtonUI(loginButtonLocation, loginButtonSize, "Login");
-	ButtonUI registerButton = new ButtonUI(registerButtonLocation, loginButtonSize, "Register");
+	ButtonUI loginButton = new ButtonUI(loginButtonLocation, loginButtonSize, "", IconUI.loginButtonIcon);
+	ButtonUI registerButton = new ButtonUI(registerButtonLocation, loginButtonSize, "", IconUI.registerButtonIcon);
 	LabelUI loginTitleLabel = new LabelUI(loginTitleLabelLocation, loginTitleSize, "Login / Register");
 	LabelUI reminderLabel = new LabelUI(reminderLabelLocation, longLabelSize, "Username cannot be empty");
 	
@@ -114,11 +110,11 @@ public class LoginView implements View {
 	
 	// Action Listeners
 
-	public void loginButtonAddAction(ActionListener actionListener) {
+	public void loginButton(ActionListener actionListener) {
 		loginButton.addActionListener(actionListener);
 	}
 	
-	public void registerButtonAddAction(ActionListener actionListener) {
+	public void registerButton(ActionListener actionListener) {
 		registerButton.addActionListener(actionListener);
 	}
 	

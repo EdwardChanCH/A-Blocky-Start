@@ -6,126 +6,131 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class MainMenuController implements Controller{
+public class MainMenuController implements Controller {
 	
-	//Main menu view
+	private static Controller previous;
 	private static MainMenuView view = new MainMenuView();
 	
 	/**
-	 * Main menu controller constructor
-	 * Called in Main
+	 * Constructor.
 	 */
 	public MainMenuController() {
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
+	}
+
+	@Override
+	public void onEnter(Controller previous) {
+		MainMenuController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+	}
+
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
 	}
 	
 	/**
-	 * Adds functionality to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
-		//continue button
-		view.continueButtonAddActionListener(new ActionListener() {
+		view.continueButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//for debug purpose, continue button leads to gameplay view
-				Main.mainMenuController.OnExit();
-				Main.gameplayController.OnEnter();
-				
-				
-				//TODO: implement this
-			}
-		});
-		
-		//new game button
-		view.newGameButtonAddActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//TODO add action
-			}
-		});
-		
-		//tutorial button
-		view.tutorialButtonAddActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
-				Main.tutorialController.onEnter();
-			}
-		});
-		
-		//progression button
-		view.progressionButtonAddActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				Main.mainMenuController.OnExit();
-				System.out.println(Main.loginController.getMode());
-				if (Main.loginController.getMode() == UserTypeEnum.TEACHER) {
-					Main.teacherProgressionController.OnEnter();
-				}else {
-					Main.studentProgressionController.OnEnterSpecial(Main.mainMenuController);
+				if (Main.loginController.getMode() == UserTypeEnum.STUDENT) {
+					// Access the last unlocked stage
+					UserData activeUser = Main.loginController.getActiveUserData();
+					int lastestStage = activeUser.getProgressionList().size() - 1;
+					Main.gameplayController.setupStage(activeUser, lastestStage);
+					
+					Main.mainMenuController.onExit();
+					Main.gameplayController.onEnter(Main.mainMenuController);
+				} else {
+					// Access the level selection screen
+					Main.mainMenuController.onExit();
+					Main.studentProgressionController.setUserData(Main.loginController.getActiveUserData());
+					Main.studentProgressionController.onEnter(Main.mainMenuController);
 				}
 				
+				Main.soundController.playSound(SoundController.buttonClick);
+			}
+		});
+		
+		view.newGameButton(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.loginController.resetActiveUserData();
+				int lastestStage = 0;
+				UserData activeUser = Main.loginController.getActiveUserData();
+				Main.gameplayController.setupStage(activeUser, lastestStage);
 				
+				Main.mainMenuController.onExit();
+				Main.gameplayController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
+			}
+		});
+		
+		view.tutorialButton(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.mainMenuController.onExit();
+				Main.tutorialController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
+			}
+		});
+		
+		view.progressionButton(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				
+				Main.mainMenuController.onExit();
+				
+				if (Main.loginController.getMode() == UserTypeEnum.STUDENT) {
+					Main.studentProgressionController.setUserData(Main.loginController.getActiveUserData());
+					Main.studentProgressionController.onEnter(Main.mainMenuController);
+				} else {
+					Main.teacherProgressionController.onEnter(Main.mainMenuController);
+				}
+				
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
+			
 		});
 		
-		//high score button
-		view.highscoreButtonAddActionListener(new ActionListener() {
+		view.highscoreButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
-				Main.highScoreController.OnEnter();
+				Main.mainMenuController.onExit();
+				Main.highScoreController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
-		//setting button
-		view.settingsButtonAddActionListener(new ActionListener() {
+		view.settingsButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.mainMenuController.OnExit();
-				Main.settingsController.OnEnter();
+				Main.mainMenuController.onExit();
+				Main.settingsController.onEnter(Main.mainMenuController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 		
-		//exit application when exit button is clicked
-		view.exitButtonAddActionListener(new ActionListener() {
+		view.exitButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.soundController.playSound(SoundController.buttonClick);
 				System.exit(0);
 			}
 		});
-	}
-
-	/**
-	 * Is called when entering main menu
-	 */
-	@Override
-	public void OnEnter() {
-		
-		//shows the view
-		view.setVisibility(true);
-	}
-
-	/**
-	 * Is called when exiting 
-	 */
-	@Override
-	public void OnExit() {
-		
-		//hides the view
-		view.setVisibility(false);
 	}
 	
 }

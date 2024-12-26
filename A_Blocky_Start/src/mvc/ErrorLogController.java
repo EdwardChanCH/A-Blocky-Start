@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
+
 /**
  * This controller class handles error logging. 
  * @version 1.0
@@ -11,7 +14,7 @@ import java.io.IOException;
  * @author Chun Ho Chan (Edward)
  * @author Eunhak Kim
  */
-public class ErrorLogController implements Controller {
+public class ErrorLogController {
 
 	private static final String filename = "game_errorlog.txt";
 	
@@ -20,18 +23,6 @@ public class ErrorLogController implements Controller {
 	 */
 	public ErrorLogController() {
 		// do nothing
-	}
-	
-	@Override
-	public void OnEnter() {
-		// do nothing
-		
-	}
-
-	@Override
-	public void OnExit() {
-		// do nothing
-		
 	}
 	
 	/**
@@ -46,11 +37,12 @@ public class ErrorLogController implements Controller {
 			log.createNewFile(); // create a new file if not found
 			FileWriter writer = new FileWriter(filename, true);
 			writer.write(">> Warning << " + e.toString() + '\n');
-			System.out.println(">> Warning << " + e.toString());
 			writer.close();
 		} catch (IOException e1) {
-			addError(e1);
+			// do nothing
 		}
+		
+		addPopup(">> Warning << ", e.getMessage(), JOptionPane.WARNING_MESSAGE, null);
 	}
 	
 	/**
@@ -64,12 +56,12 @@ public class ErrorLogController implements Controller {
 			log.createNewFile(); // create a new file if not found
 			FileWriter writer = new FileWriter(filename, true);
 			writer.write(">> Error << " + e.toString() + '\n');
-			System.out.println(">> Error << " + e.toString());
 			writer.close();
 		} catch (IOException e1) {
-			addError(e1);
+			// do nothing
 		}
 		
+		addPopup(">> Error << ", e.getMessage(), JOptionPane.ERROR_MESSAGE, null);
 	}
 	
 	/**
@@ -81,11 +73,21 @@ public class ErrorLogController implements Controller {
 			log.createNewFile(); // create a new file if not found
 			FileWriter writer = new FileWriter(filename);	
 			writer.write("");
-			System.out.println("Error log cleared.");
+			
 			writer.close();
 		} catch (IOException e1) {
 			addError(e1);
 		}
+	}
+	
+	/**
+	 * Open a pop-up window.
+	 * @param message Message
+	 * @param title Title
+	 * @param icon Icon
+	 */
+	public void addPopup(String title, String message, int type, Icon icon) {
+		JOptionPane.showMessageDialog(null, message, title, type, icon);
 	}
 
 }

@@ -154,7 +154,7 @@ public class HighScoreView implements View {
 	
 	// Action Listeners
 
-	public void backButtonAddActionListener(ActionListener actionListener) {
+	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
 

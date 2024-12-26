@@ -20,7 +20,7 @@ import javax.swing.event.ChangeListener;
  */
 public class TeacherProgressionView implements View {
 
-	private Dimension viewSize = Main.getDimension();
+	private Dimension viewSize = Main.getGameFrameDimension();
 
 	private Dimension backButtonSize = new Dimension(30,30);
 	private Dimension containerSize = new Dimension(785, 1000);
@@ -82,7 +82,7 @@ public class TeacherProgressionView implements View {
 		
 		// add 10 entries
 		for (int i = 0; i < 10; i++) {
-			PanelUI curr = newEntry();
+			PanelUI curr = new PanelUI(entryContainerSize);
 			
 			entries.add(curr);
 			container.add(curr);
@@ -140,17 +140,6 @@ public class TeacherProgressionView implements View {
 		entry.add(totalAttemptsLabel);
 		entry.add(totalScoreLabel);
 		entry.add(completedStageLabel);
-		
-		
-		
-	}
-
-	public PanelUI newEntry() {
-		
-		PanelUI newEntry = new PanelUI(entryContainerSize);
-		
-		return newEntry;
-		
 	}
 	
 	public int getPage() {
@@ -159,11 +148,11 @@ public class TeacherProgressionView implements View {
 	
 	// Action Listeners
 
-	public void backButtonAddActionListener(ActionListener actionListener) {
+	public void backButton(ActionListener actionListener) {
 		backButton.addActionListener(actionListener);
 	}
 	
-	public void selectorAddChangeListener(ChangeListener changeListener) {
+	public void pageSelector(ChangeListener changeListener) {
 		pageSelector.addChangeListener(changeListener);
 	}
 

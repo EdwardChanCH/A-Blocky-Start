@@ -1,13 +1,16 @@
 # README File
 
+## A Blocky Start
+![Thumbnail](A_Blocky_Start/img/Tutorial_1.png)
+
 ## 0. Copyright & Credits
 
 ### a. Team Members:
 
-* Chun Ho Chan, Edward
-  * ccha232@uwo.ca
+* Chun Ho Chan (Edward)
+  * edwardchanchunho@gmail.com
 * Yuting Hou
-  * yhou294@uwo.ca
+  * yuting.yh@gmail.com
 * Doyle Blacklock
   * dblacklo@uwo.ca
 * Simon Mccabe
@@ -27,13 +30,24 @@ Winter 2024
 
 This game project was created as part of CompSci 2212B at Western University.  
 
+### e. 3rd Party Resources
+
+* Background Music (CC BY license)
+  * "[16-Bit;Genesis]Bad Apple!!(배드애플)", made by 브금맨 JX.
+    * https://youtu.be/8XGJlvCOl50
+* Button Click Sound (CC BY license)
+  * "RC Copter Control Button 3", hosted on QuickSounds.com
+    * https://quicksounds.com/sound/20724/rc-copter-control-button-3
+* All images are custom-made.  
+
 ## 1. Short Description
 
-(TODO: A short description of your software and what it does.)  
+This is a game project (group assignment) of CompSci 2212B at Western University.  
+
+To win the game, move the robot to the exit by chaining action blocks.  
 
 ## 2. Required Libraries & 3rd Party Tools
 
-(TODO: A list of the required libraries and third party tools required to run or build your software (include version numbers).)  
 * Java JDK-21
   * version 21.0.2
 * Java Swing
@@ -41,55 +55,67 @@ This game project was created as part of CompSci 2212B at Western University.
 * Eclipse Java IDE
   * version 2023-09
 * JUnit 5
-  * pre-installed as part of Eclipse
+  * pre-installed as part of Eclipse Java IDE
 
 ## 3. How To Compile (step-by-step guide)
 
-(TODO: A detailed step by step guide for building your software (compiling it from source code).  
-This should include details on how to obtain and install any third party libraries.)  
+Steps:  
+1. Download all required libraries & 3rd party tools listed above from their respective websites.  
+2. Open this project folder 'A_Blocky_Start' in the Eclipse IDE, then click File > Export > Java > Runnable JAR File.  
+3. Follow the instructions on screen.  
 
 ## 4. How To Run (step-by-step guide)
 
-(TODO: A detailed step by step guide on how to run your already built (compiled) software.)  
+Steps:  
+1. Double-click on the compiled JAR file.  
+2. Enter one of the username & password combinations below.  
 
 ## 5. User Guide
 
-(TODO: A user guide, that explains how to use your software.)  
+The Tutorial screen includes all the necessary information to complete the game. It is accessible from the Main Menu screen after logging in.  
+Students can make custom accounts, while teachers/ developers must use a pre-defined account.  
 
 ## 6. Account Usernames & Passwords
 
-+----------------+--------------+------------------------+
-| Account Type   | Username     | Password               |
-+================+==============+========================+
-| Student        | AliceLiddell | pass1234               |
-| Student        | JaneDoe      | pass5678               |
-| Student        | JohnDoe      | pass5678               |
-| Student        | BruceLee     | pass9012               |
-+----------------+--------------+------------------------+
-| Student (Test) | Student      | pass1234               |
-+----------------+--------------+------------------------+
-| Teacher        | Teacher      | GradeOurPorject100%    |
-+----------------+--------------+------------------------+
-| Developer      | Developer    | TooManyMergeConflicts! |
-+----------------+--------------+------------------------+
+* STUDENT
+  * AliceLiddell
+    * pass1234
+* STUDENT
+  * JaneDoe
+    * pass5678
+* STUDENT
+  * JohnDoe
+    * pass5678
+* STUDENT
+  * BruceLee
+    * pass9012
+* STUDENT
+  * Student
+    * BestTeamEver>:)
+* TEACHER
+  * Teacher
+    * GradeOurPorject100%
+* DEVELOPER
+  * Developer
+    * TooManyMergeConflicts!
 
 Note:  
-* New student accounts can be registered with a custom username (case-insensitive) and a custom password.  
-* All teachers share the same pre-defined teacher account.  
-* All teachers share the same pre-defined teacher account.  
-* All developers share the same pre-defined developer account.  
-* 4 student accounts are included for system testing.  
-* 1 test account is included for unit testing.  
+* New STUDENT accounts can be registered with a custom username (case-insensitive) and password (case-sensitive).  
+* Existing STUDENT accounts can be logged in with the corresponding username (case-insensitive) and password (case-sensitive).  
+* All passwords are stored in the corresponding user data file in a CSV format; teachers can change any password manually using Microsoft Excel (or similar apps).  
+* All teachers share one pre-defined TEACHER account.  
+* All developers share one pre-defined DEVELOPER account.  
+* 4 STUDENT accounts are included for demonstration purposes.  
+* 1 test account, "Student", is included for system testing.  
 
 ## 7. Teacher Mode Activation
 
-To access teacher mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurPorject100%**". 
+To access TEACHER mode, the user must log in with the username "**Teacher**" and the secret password "**GradeOurProject100%**".  
 
 ## 8. Developer Mode Activation
 
-To access developer mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**". 
+To access DEVELOPER mode, the user must log in with the username "**Developer**" and the secret password "**TooManyMergeConflicts!**".  
 
 ## 9. Notes For TA
 
-(TODO: Anything else that would be helpful for the TA marking your project to know.)  
 **Thank you for playing our game!**  

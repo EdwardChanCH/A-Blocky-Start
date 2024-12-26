@@ -1,6 +1,4 @@
-﻿Teacher,Teacher,GradeOurPorject100%,0,0,0,,,
-1,TRUE,0,0,0,0,/,Start,End
-2,TRUE,0,0,0,0,/,Start,End
-3,TRUE,0,0,0,0,/,Start,End
-4,TRUE,0,0,0,0,/,Start,End
-5,TRUE,0,0,0,0,/,Start,End
+TEACHER,Teacher,GradeOurProject100%,0,0,0,,,
+0,TRUE,0,0,0,0,/,START,END
+1,TRUE,0,0,0,0,/,START,END
+2,TRUE,0,0,0,0,/,START,END

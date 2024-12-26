@@ -49,7 +49,7 @@ public class ProgressionData {
 	public ProgressionData(int stageID) {
 		this.stageID = stageID;
 		this.completed = false;
-		this.shortestSteps = 0;
+		this.shortestSteps = 1000;
 		this.highestScore = 0;
 		this.timeSpent = 0;
 		this.attempts = 0;

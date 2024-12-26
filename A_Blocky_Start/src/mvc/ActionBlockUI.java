@@ -217,13 +217,13 @@ public class ActionBlockUI extends JPanel {
 	 */
 	public void setStatus(int status) {
 		if (status == 2) {
-			setBackground(Color.CYAN);
+			setBackground(IconUI.actionBlockNext);
 		} else if (status == 1) {
-			setBackground(Color.GREEN);
+			setBackground(IconUI.actionBlockCurrent);
 		} else if (status == 0) {
-			setBackground(Color.ORANGE);
+			setBackground(IconUI.actionBlockIdle);
 		} else {
-			setBackground(Color.LIGHT_GRAY);
+			setBackground(IconUI.actionBlockHeader);
 		}
 		
 		setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));

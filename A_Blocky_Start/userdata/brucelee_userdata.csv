@@ -1,6 +1,4 @@
-﻿Student,BruceLee,pass9012,15,25,5,,,,,,,,,
-1,TRUE,1,3,5,1,/,Start,Forward,End,,,,,
-2,TRUE,3,3,5,1,/,Start,Forward,Left,Forward,End,,,
-3,TRUE,5,3,5,1,/,Start,Forward,Left,Forward,Right,Forward,End,
-4,TRUE,12,3,5,1,/,Start,Forward,Left,Forward,Right,Goto_2,End,
-5,TRUE,40,3,5,1,/,Start,Loop_20_10_8,Forward,Left,Forward,Right,Goto_2,End
+﻿STUDENT,BruceLee,pass9012,15,25,5,,,,,,,,
+0,TRUE,1,3,5,1,/,Start,Forward,End,,,,
+1,TRUE,3,3,5,1,/,Start,Forward,Left,Forward,End,,
+2,TRUE,5,3,5,1,/,Start,Forward,Left,Forward,Right,Forward,End

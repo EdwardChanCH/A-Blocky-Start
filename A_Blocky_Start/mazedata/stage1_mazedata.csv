@@ -1,0 +1,11 @@
+﻿S,_,W,_,_,_,_,_,_
+W,_,K,W,_,_,_,_,_
+_,W,_,_,W,_,_,_,_
+_,_,W,_,K,W,_,_,_
+_,_,_,W,_,_,W,_,_
+_,_,_,_,W,_,K,W,_
+_,_,_,_,_,W,_,_,W
+_,_,_,_,_,_,W,_,E
+_,_,_,_,_,_,_,W,W
+"""Collect all 3 packages and move to the exit.""",,,,,,,,
+"""Try using this repeat-forever loop: Start, Forward, Right, Forward, Left, Goto(line = 2), End.""",,,,,,,,

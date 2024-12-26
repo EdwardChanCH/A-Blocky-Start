@@ -6,63 +6,60 @@ import java.awt.event.ActionListener;
 /**
  * 
  */
-public class HighScoreController implements Controller{
+public class HighScoreController implements Controller {
 	
+	private static Controller previous;
 	private static HighScoreView view = new HighScoreView();
-	private static HighScoreData data;
+	private static HighScoreData data = HighScoreData.importData();
+	
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public HighScoreController() {
-		
 		view.insertPanelToFrame(Main.gameFrame);
-		
 		populateActionListener();
-		
+	}
 	
+	@Override
+	public void onEnter(Controller previous) {
+		HighScoreController.previous = previous;
+		view.setVisibility(true);
+		Main.refreshColorblindOverlay();
+		updateHighScore();
+	}
+	
+	@Override
+	public void onExit() {
+		view.setVisibility(false);
 	}
 	
 	/**
-	 * Adds functionality to UI elements
+	 * Help to insert action listeners to UI elements.
 	 */
 	private void populateActionListener() {
 		
-		//back button
-		view.backButtonAddActionListener(new ActionListener() {
+		// back button
+		view.backButton(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.highScoreController.OnExit();
-				Main.mainMenuController.OnEnter();
+				Main.highScoreController.onExit();
+				HighScoreController.previous.onEnter(Main.highScoreController);
+				Main.soundController.playSound(SoundController.buttonClick);
 			}
 		});
 	}
 	
-	/**
-	 * Is called when showing high score view
-	 */
-	@Override
-	public void OnEnter() {
-		view.setVisibility(true);
-		updateHighScore();
-	}
-	
 	private void updateHighScore() {
-		data = HighScoreData.importData();
-		//data.importData();
 		for(int i = 0; i < 5; i++) {
 			view.addHighscore(i, data.getUsername(i), data.getHighScore(i));
 		}
-		data.exportHighScore();
-
+		data.exportData();
+	}
+	
+	public void addNameScore(String username, int highScore){
+		data.addNameScore(username, highScore);
+		data.exportData();
 	}
 
-	/**
-	 * Is called when exiting high score view
-	 */
-	@Override
-	public void OnExit() {
-		
-		view.setVisibility(false);
-	}
 }
