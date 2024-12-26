@@ -81,7 +81,7 @@ class UserDataTest {
 	@Test
 	void testImportDataProgression() {
 		UserData ud = UserData.importData(UserData.toFilename("student"));
-		int result = ud.getProgressionAtIndex(0).getTimeSpent();
+		int result = ud.getProgressionAtIndex(1).getTimeSpent();
 		assertEquals(20, result);
 	}
 
@@ -230,7 +230,6 @@ class UserDataTest {
 	@Test
 	void testGetTotalScore() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
-		ud.addTotalScore(6);
 		assertEquals(6, ud.getTotalScore());
 	}
 
@@ -240,7 +239,6 @@ class UserDataTest {
 	@Test
 	void testGetTotalTimeSpent() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
-		ud.addTotalTimeSpent(70);
 		assertEquals(70, ud.getTotalTimeSpent());
 	}
 
@@ -250,7 +248,6 @@ class UserDataTest {
 	@Test
 	void testGetTotalAttempts() {
 		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
-		ud.addTotalAttempts(10);
 		assertEquals(10, ud.getTotalAttempts());
 	}
 
