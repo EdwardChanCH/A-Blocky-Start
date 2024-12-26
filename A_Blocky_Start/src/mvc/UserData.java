@@ -90,11 +90,7 @@ public class UserData {
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
 			int totalTimeSpent = scnr.nextInt();
-			int totalAttempts = 1;
-			
-			// Extract username from filename
-			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
-			System.out.println(filename + "," + username);
+			int totalAttempts = scnr.nextInt();
 			
 			// Call constructor
 			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
@@ -168,6 +164,7 @@ public class UserData {
 			firstLine += totalTimeSpent;
 			firstLine += ',';
 			firstLine += totalAttempts;
+			firstLine += ',';
 			firstLine += '\n';
 			
 			writer.write(firstLine);

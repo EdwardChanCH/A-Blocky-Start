@@ -2,8 +2,11 @@ package unittest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import mvc.SettingsData;
 
 /**
@@ -14,50 +17,59 @@ import mvc.SettingsData;
  */
 class SettingsDataTest {
 	
-	private SettingsData settings;
+	private SettingsData settingsData;
+	private static SettingsData backupData;
+	
+	@BeforeAll
+	static void setUpClass() {
+		backupData = SettingsData.importData();
+	}
 	
 	@BeforeEach
     void setUp() {
-        //new SettingsData();
-		// Initialize or reset settings before each test
-        settings = SettingsData.importData();
+        settingsData = SettingsData.importData();
+    }
+	
+    @AfterEach
+    void tearDown() {
+    	backupData.exportData();
     }
 
 	@Test
 	void testImportData() {
-		SettingsData settings = SettingsData.importData();
-		assertNotNull(settings);
+		SettingsData settingsData = SettingsData.importData();
+		assertNotNull(settingsData);
 		
-		 assertEquals(800, settings.getScreenWidth());
-		 assertEquals(600, settings.getScreenHeight());
-		 assertFalse(settings.getColourblindMode());
-		 assertEquals(50, settings.getVolumePercentage());
+		 assertEquals(800, settingsData.getScreenWidth());
+		 assertEquals(600, settingsData.getScreenHeight());
+		 assertFalse(settingsData.getColourblindMode());
+		 assertEquals(50, settingsData.getVolumePercentage());
 	}
 	
 	@Test
 	void testExportAndReImportSettings() {
-		//SettingsData settings = SettingsData.importData();
-	    // Modify settings
-	    settings.setScreenHeight(settings.getScreenHeight() + 100);
-	    settings.setScreenWidth(settings.getScreenWidth() + 100);
-	    settings.setColourblindMode(!settings.getColourblindMode());
-	    settings.setVolumeLevel(settings.getVolumePercentage() + 10);
+		//SettingsData settingsData = SettingsData.importData();
+	    // Modify settingsData
+	    settingsData.setScreenHeight(settingsData.getScreenHeight() + 100);
+	    settingsData.setScreenWidth(settingsData.getScreenWidth() + 100);
+	    settingsData.setColourblindMode(!settingsData.getColourblindMode());
+	    settingsData.setVolumeLevel(settingsData.getVolumePercentage() + 10);
 	    
-	    // Export modified settings
-	    settings.exportData();
+	    // Export modified settingsData
+	    settingsData.exportData();
 
 	    // Re-import to verify changes
 	    SettingsData modifiedSettings = SettingsData.importData();
 	    assertNotNull(modifiedSettings);
-	    assertEquals(settings.getScreenHeight(), modifiedSettings.getScreenHeight());
-	    assertEquals(settings.getScreenWidth(), modifiedSettings.getScreenWidth());
-	    assertEquals(settings.getColourblindMode(), modifiedSettings.getColourblindMode());
-	    assertEquals(settings.getVolumePercentage(), modifiedSettings.getVolumePercentage());
+	    assertEquals(settingsData.getScreenHeight(), modifiedSettings.getScreenHeight());
+	    assertEquals(settingsData.getScreenWidth(), modifiedSettings.getScreenWidth());
+	    assertEquals(settingsData.getColourblindMode(), modifiedSettings.getColourblindMode());
+	    assertEquals(settingsData.getVolumePercentage(), modifiedSettings.getVolumePercentage());
 	    
-	    modifiedSettings.setScreenHeight(settings.getScreenHeight() - 100);
-	    modifiedSettings.setScreenWidth(settings.getScreenWidth() - 100);
-	    modifiedSettings.setColourblindMode(!settings.getColourblindMode());
-	    modifiedSettings.setVolumeLevel(settings.getVolumePercentage() - 10);
+	    modifiedSettings.setScreenHeight(settingsData.getScreenHeight() - 100);
+	    modifiedSettings.setScreenWidth(settingsData.getScreenWidth() - 100);
+	    modifiedSettings.setColourblindMode(!settingsData.getColourblindMode());
+	    modifiedSettings.setVolumeLevel(settingsData.getVolumePercentage() - 10);
 	    
 	    modifiedSettings.exportData();
 	}
@@ -65,15 +77,15 @@ class SettingsDataTest {
 	@Test
 	void testGetScreenHeight() {
         int expectedHeight = 600;
-        int actualHeight = settings.getScreenHeight();
+        int actualHeight = settingsData.getScreenHeight();
         assertEquals(expectedHeight, actualHeight);
     }
 	
 	@Test
 	void testSetScreenHeight() {
         int expectedHeight = 1400;
-        settings.setScreenHeight(expectedHeight);
-        int actualHeight = settings.getScreenHeight();
+        settingsData.setScreenHeight(expectedHeight);
+        int actualHeight = settingsData.getScreenHeight();
         assertEquals(expectedHeight, actualHeight);
     }
 	
@@ -81,8 +93,8 @@ class SettingsDataTest {
 	void testNegativeSetScreenHeight() {
         int expectedHeight = 600;
         int tryNegativeHeight = -1400;
-        settings.setScreenHeight(tryNegativeHeight);
-        int actualHeight = settings.getScreenHeight();
+        settingsData.setScreenHeight(tryNegativeHeight);
+        int actualHeight = settingsData.getScreenHeight();
         assertEquals(expectedHeight, actualHeight);
     }
 	
@@ -90,15 +102,15 @@ class SettingsDataTest {
 	@Test
     void testGetScreenWidth() {
         int expectedWidth = 800;
-        int actualWidth = settings.getScreenWidth();
+        int actualWidth = settingsData.getScreenWidth();
         assertEquals(expectedWidth, actualWidth);
     }
 	
     @Test
     void testSetScreenWidth() {
         int expectedWidth = 800;
-        settings.setScreenWidth(expectedWidth);
-        int actualWidth = settings.getScreenWidth();
+        settingsData.setScreenWidth(expectedWidth);
+        int actualWidth = settingsData.getScreenWidth();
         assertEquals(expectedWidth, actualWidth);
     }
     
@@ -106,38 +118,38 @@ class SettingsDataTest {
     void testNegativeSetScreenWidth() {
         int expectedWidth = 800;
         int tryNegativeWidth = -800;
-        settings.setScreenWidth(tryNegativeWidth);
-        int actualWidth = settings.getScreenWidth();
+        settingsData.setScreenWidth(tryNegativeWidth);
+        int actualWidth = settingsData.getScreenWidth();
         assertEquals(expectedWidth, actualWidth);
     }
 
     @Test
     void testGetColourblindMode() {
         boolean expectedMode = false;
-        boolean actualMode = settings.getColourblindMode();
+        boolean actualMode = settingsData.getColourblindMode();
         assertEquals(expectedMode, actualMode);
     }
     
     @Test
     void testSetColourblindMode() {
         boolean expectedMode = false;
-        settings.setColourblindMode(expectedMode);
-        boolean actualMode = settings.getColourblindMode();
+        settingsData.setColourblindMode(expectedMode);
+        boolean actualMode = settingsData.getColourblindMode();
         assertEquals(expectedMode, actualMode);
     }
 
     @Test
     void testGetVolumeLevel() {
         int expectedVolume = 50;
-        int actualVolume = settings.getVolumePercentage();
+        int actualVolume = settingsData.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
     
     @Test
     void testSetVolumeLevel() {
         int expectedVolume = 75;
-        settings.setVolumeLevel(expectedVolume);
-        int actualVolume = settings.getVolumePercentage();
+        settingsData.setVolumeLevel(expectedVolume);
+        int actualVolume = settingsData.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
     
@@ -145,8 +157,8 @@ class SettingsDataTest {
     void testNegativeSetVolumeLevel() {
     	int expectedVolume = 50;
         int tryNegativeVolume = -85;
-        settings.setVolumeLevel(tryNegativeVolume);
-        int actualVolume = settings.getVolumePercentage();
+        settingsData.setVolumeLevel(tryNegativeVolume);
+        int actualVolume = settingsData.getVolumePercentage();
         assertEquals(expectedVolume, actualVolume);
     }
 	

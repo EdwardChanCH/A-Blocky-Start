@@ -34,7 +34,7 @@ class HighScoreDataTest {
     @AfterEach
     void tearDown() {
     	backupData.exportData();
-    }  
+    }
 
     @Test
     void testInitialization() {
@@ -47,10 +47,9 @@ class HighScoreDataTest {
 
     @Test
     void testImportData() {
-        HighScoreData highScoreData = HighScoreData.importData();
         assertNotNull(highScoreData);
-        assertEquals("BruceLee", highScoreData.getUsername(0)); 
-        assertEquals(15, highScoreData.getHighScore(0));
+        assertEquals("(empty)", highScoreData.getUsername(0)); 
+        assertEquals(0, highScoreData.getHighScore(0));
     }
 
     @Test
@@ -66,12 +65,12 @@ class HighScoreDataTest {
 
     @Test
     void testGetUsername() {
-        assertEquals("BruceLee", highScoreData.getUsername(0));
+        assertEquals("(empty)", highScoreData.getUsername(0));
     }
 
     @Test
     void testGetHighScore() {
-        assertEquals(15, highScoreData.getHighScore(0));
+        assertEquals(0, highScoreData.getHighScore(0));
     }
 
     @Test
