@@ -1,7 +1,7 @@
 # README File
 
 ## A Blocky Start
-![Thumbnail](A_Blocky_Start/img/Tutorial_1.png)
+![Thumbnail](project_documentation/_thumbnail.png)
 
 ## 0. Copyright & Credits
 
