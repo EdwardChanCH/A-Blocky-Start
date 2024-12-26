@@ -86,15 +86,15 @@ public class UserData {
 			
 			// Decode the first line and store them in temporary variables
 			String usertype = scnr.next();
-			String username = scnr.next();
+			scnr.next(); // skip username, which we know
 			String password = scnr.next();
 			int totalScore = scnr.nextInt();
 			int totalTimeSpent = scnr.nextInt();
 			int totalAttempts = 1;
 			
-			// Extract username from filename // TODO
-			//String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
-			//System.out.println(filename + "," + username);
+			// Extract username from filename
+			String username = filename.substring(filenamePrefix.length(), filename.length() - filenameSuffix.length());
+			System.out.println(filename + "," + username);
 			
 			// Call constructor
 			UserData userData = new UserData(UserTypeEnum.fromString(usertype), username, password);
