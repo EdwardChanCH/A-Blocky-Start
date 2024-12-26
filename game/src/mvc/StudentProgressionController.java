@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.event.ChangeListener;
-
 /**
  * This controller class manages the student progression screen.
  * @version 1.0
@@ -61,7 +59,7 @@ public class StudentProgressionController implements Controller {
 		data = new StudentProgressionData(userData);
 		
 		ProgressionData progressionData;
-		for (int i = 0; i < data.entriesPerPage; i++) {
+		for (int i = 0; i < StudentProgressionData.entriesPerPage; i++) {
 			progressionData = data.getProgression(i);
 
 			if (progressionData == null) {

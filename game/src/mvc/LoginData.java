@@ -2,8 +2,6 @@ package mvc;
 
 import java.io.File;
 
-import javax.swing.JOptionPane;
-
 /**
  * This model class stores, updates, and checks the current login data in the login screen.
  * @version 1.0

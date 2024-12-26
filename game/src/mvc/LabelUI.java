@@ -4,16 +4,15 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  * @author Yuting
  *
  */
+@SuppressWarnings("serial")
 public class LabelUI extends JLabel {
 	
 	private static final Font defaultFont = new Font("Serif", Font.PLAIN, 16);

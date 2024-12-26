@@ -9,6 +9,7 @@ import javax.swing.JTextField;
  * @author Yuting
  *
  */
+@SuppressWarnings("serial")
 public class TextFieldUI extends JTextField{
 	
 	/**

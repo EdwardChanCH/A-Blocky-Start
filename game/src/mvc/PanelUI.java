@@ -2,11 +2,9 @@ package mvc;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -16,6 +14,7 @@ import javax.swing.JPanel;
  * @author Yuting Hou
  * @author Chun Ho Chan (Edward)
  */
+@SuppressWarnings("serial")
 public class PanelUI extends JPanel {
 
 	/**

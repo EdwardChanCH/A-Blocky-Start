@@ -15,6 +15,7 @@ import javax.swing.JButton;
  * This is a JButton
  * When clicked, switches the view from one panel to another
  */
+@SuppressWarnings("serial")
 public class ButtonUI extends JButton{
 	
 	

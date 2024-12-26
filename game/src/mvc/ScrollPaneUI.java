@@ -2,14 +2,12 @@ package mvc;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.Point;
 
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("serial")
 public class ScrollPaneUI extends JScrollPane {
 
 	/**

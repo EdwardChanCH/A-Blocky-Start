@@ -2,7 +2,6 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -14,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginController implements Controller {
 
+	@SuppressWarnings("unused")
 	private static Controller previous;
 	private static LoginView view = new LoginView();
 	private static LoginData data = new LoginData();

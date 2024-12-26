@@ -5,13 +5,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
 
 /**
  * @author Yuting
  * We dont have to implement this
  * 
  */
+@SuppressWarnings("serial")
 public class DraggablePanelUI extends JPanel {
 	
 	//top left corner x & y pos

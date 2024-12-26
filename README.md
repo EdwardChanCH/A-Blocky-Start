@@ -46,6 +46,8 @@ This is a game project (group assignment) of CompSci 2212B at Western University
 
 To win the game, move the robot to the exit by chaining action blocks.  
 
+To get a high score, minimize the number of action blocks and maximize the number of collected packages.  
+
 ## 2. Required Libraries & 3rd Party Tools
 
 * Java JDK-21
@@ -61,7 +63,7 @@ To win the game, move the robot to the exit by chaining action blocks.
 
 Steps:  
 1. Download all required libraries & 3rd party tools listed above from their respective websites.  
-2. Open this project folder 'A_Blocky_Start' in the Eclipse IDE, then click File > Export > Java > Runnable JAR File.  
+2. Open this project folder 'A_Blocky_Start' in the Eclipse IDE, then click "File > Export > Java > Runnable JAR File".  
 3. Follow the instructions on screen.  
 
 ## 4. How To Run (step-by-step guide)
@@ -73,6 +75,7 @@ Steps:
 ## 5. User Guide
 
 The Tutorial screen includes all the necessary information to complete the game. It is accessible from the Main Menu screen after logging in.  
+
 Students can make custom accounts, while teachers/ developers must use a pre-defined account.  
 
 ## 6. Account Usernames & Passwords

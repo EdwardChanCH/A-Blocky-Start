@@ -24,6 +24,7 @@ class MazeDataTest {
 	@Test
 	void ImportData() {
 		boolean success = true;
+		@SuppressWarnings("unused")
 		MazeData data = MazeData.importData(MazeData.toFilename(999));
 		success = success && true;
 		assertTrue(success);

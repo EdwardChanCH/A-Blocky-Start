@@ -6,6 +6,7 @@ import java.awt.Point;
 
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class LayeredPaneUI extends JLayeredPane {
 
 	/**

@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * This class launches the game. 

@@ -6,6 +6,7 @@ import java.awt.Point;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+@SuppressWarnings("serial")
 public class SpinnerUI extends JSpinner {
 
 	/**

@@ -15,6 +15,7 @@ public class GameplayController implements Controller {
 	private static final int ACTION_CHAIN_SPEED = 300; // every 300 milliseconds
 	private static final int AUTO_SAVE_SPEED = 1000 * 60 * 5; // every 5 minutes
 	
+	@SuppressWarnings("unused")
 	private static Controller previous;
 	private static GameplayView view = new GameplayView();
 	private static UserData user;
@@ -318,7 +319,7 @@ public class GameplayController implements Controller {
 	}
 	
 	public void unlockNextStage() {
-		if (user.getProgressionList().size() <= maze.HIGHEST_STAGE) {
+		if (user.getProgressionList().size() <= MazeData.HIGHEST_STAGE) {
 			user.addProgressionData(new ProgressionData(stageID + 1));
 			user.exportData();
 		}

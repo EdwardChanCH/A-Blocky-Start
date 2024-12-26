@@ -1,18 +1,19 @@
 package mvc;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeListener;
 
+@SuppressWarnings("serial")
 public class ActionBlockUI extends JPanel {
 
+	
+	
 	private static final int ACTION_BLOCK_WIDTH = 300;
 	private static final int ACTION_BLOCK_HEIGHT = 50;
 	private static final Dimension ACTION_BLOCK_SPINNER_SIZE = new Dimension(50, 30);

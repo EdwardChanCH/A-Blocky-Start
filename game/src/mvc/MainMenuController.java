@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
  */
 public class MainMenuController implements Controller {
 	
+	@SuppressWarnings("unused")
 	private static Controller previous;
 	private static MainMenuView view = new MainMenuView();
 	
