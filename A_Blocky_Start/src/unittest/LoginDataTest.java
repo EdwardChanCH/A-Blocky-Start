@@ -20,7 +20,7 @@ import mvc.UserTypeEnum;
  *
  */
 class LoginDataTest {
-
+	
 	/**
 	 * Test method for {@link mvc.LoginData#getMode()}.
 	 */
@@ -55,10 +55,10 @@ class LoginDataTest {
 	@Test
 	void testRegisterActiveUser() {
 		LoginData ld = new LoginData();
-		ld.setUsernameInput("Dummy");
-		ld.setPasswordInput("0000");
+		ld.setUsernameInput("studentUnitTest");
+		ld.setPasswordInput("pass1234");
 		ld.registerActiveUser();
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "Dummy", "0000");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		
 		boolean equalness = true;
 		equalness = equalness && (ud.getUserType().equals(ld.getActiveUserData().getUserType()));

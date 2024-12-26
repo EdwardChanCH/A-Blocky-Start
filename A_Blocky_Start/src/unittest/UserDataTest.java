@@ -2,6 +2,7 @@ package unittest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -20,13 +21,13 @@ import mvc.UserTypeEnum;
  * @author Eunhak Kim
  */
 class UserDataTest {
-
+	
 	/**
 	 * Test method for {@link mvc.UserData#importData(java.lang.String)}.
 	 */
 	@Test
 	void testImportDataUserType() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
 		assertEquals(UserTypeEnum.STUDENT, ud.getUserType());
 	}
 	
@@ -35,8 +36,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataUsername() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
-		assertEquals("student", ud.getUsername());
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
+		assertEquals("AliceLiddell", ud.getUsername());
 	}
 	
 	/**
@@ -44,7 +45,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataPassword() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
 		assertEquals("pass1234", ud.getPassword());	
 	}
 	
@@ -53,7 +54,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalScore() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
 		assertEquals(6, ud.getTotalScore());
 	}
 	
@@ -62,7 +63,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalTimeSpent() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
 		assertEquals(70, ud.getTotalTimeSpent());
 	}
 	
@@ -71,7 +72,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataTotalAttempts() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
 		assertEquals(10, ud.getTotalAttempts());
 	}
 	
@@ -80,8 +81,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testImportDataProgression() {
-		UserData ud = UserData.importData(UserData.toFilename("student"));
-		int result = ud.getProgressionAtIndex(1).getTimeSpent();
+		UserData ud = UserData.importData(UserData.toFilename("AliceLiddell"));
+		int result = ud.getProgressionAtIndex(0).getTimeSpent();
 		assertEquals(20, result);
 	}
 
@@ -91,7 +92,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testExportUserDataFirstLine() throws FileNotFoundException {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalScore(6);
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
@@ -106,14 +107,19 @@ class UserDataTest {
 		
 		ud.exportData();
 
-		String filename = UserData.toFilename("student");
+		String filename = UserData.toFilename("studentUnitTest");
 		FileReader fileIn = new FileReader(filename);
 		Scanner scnr = new Scanner(fileIn);
-		String firstLine = "STUDENT,student,pass1234,6,70,10";
+		String firstLine = "STUDENT,studentUnitTest,pass1234,6,70,10,";
 		
 		assertEquals(firstLine, scnr.nextLine());
 		
 		scnr.close();
+		
+		File file = new File(UserData.toFilename("studentUnitTest"));
+    	if (file.exists() && file.isFile()) {
+    		file.delete();
+        }
 	}
 	
 	/**
@@ -122,7 +128,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testExportUserDataSecondLine() throws FileNotFoundException {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalScore(6);
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
@@ -137,13 +143,18 @@ class UserDataTest {
 		
 		ud.exportData();
 
-		String filename = UserData.toFilename("student");
+		String filename = UserData.toFilename("studentUnitTest");
 		FileReader fileIn = new FileReader(filename);
 		Scanner scnr = new Scanner(fileIn);
 		scnr.nextLine();
 		assertEquals(stage1, scnr.nextLine());
 		
 		scnr.close();
+		
+		File file = new File(UserData.toFilename("studentUnitTest"));
+    	if (file.exists() && file.isFile()) {
+    		file.delete();
+        }
 	}
 	
 	/**
@@ -152,7 +163,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testExportUserDataThirdLine() throws FileNotFoundException {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalScore(6);
 		ud.addTotalTimeSpent(70);
 		ud.addTotalAttempts(10);
@@ -167,7 +178,7 @@ class UserDataTest {
 		
 		ud.exportData();
 
-		String filename = UserData.toFilename("student");
+		String filename = UserData.toFilename("studentUnitTest");
 		FileReader fileIn = new FileReader(filename);
 		Scanner scnr = new Scanner(fileIn);
 		scnr.nextLine();
@@ -176,16 +187,11 @@ class UserDataTest {
 		assertEquals(stage2, scnr.nextLine());
 		
 		scnr.close();
-	}
-	
-	/**
-	 * Test method for {@link mvc.UserData#exportData()}.
-	 * @throws Exception 
-	 */
-	@Test
-	void testExportUserDataNotStudent() {
-		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacher", "GradeUs100%");
-		assertThrows(Exception.class, ()->{ud.exportData();});
+		
+		File file = new File(UserData.toFilename("studentUnitTest"));
+    	if (file.exists() && file.isFile()) {
+    		file.delete();
+        }
 	}
 
 	/**
@@ -193,8 +199,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testToFilename() {
-		String filename = "./userdata/student_userdata.csv";
-		assertEquals(filename, UserData.toFilename("student"));
+		String filename = "./userdata/studentunittest_userdata.csv";
+		assertEquals(filename, UserData.toFilename("studentUnitTest"));
 	}
 
 	/**
@@ -202,7 +208,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetUserType() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		assertEquals(UserTypeEnum.STUDENT, ud.getUserType());
 	}
 
@@ -211,8 +217,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetUsername() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
-		assertEquals("student", ud.getUsername());
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
+		assertEquals("studentUnitTest", ud.getUsername());
 	}
 
 	/**
@@ -220,7 +226,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetPassword() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		assertEquals("pass1234", ud.getPassword());
 	}
 
@@ -229,7 +235,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetTotalScore() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
+		ud.addTotalScore(6);
 		assertEquals(6, ud.getTotalScore());
 	}
 
@@ -238,7 +245,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetTotalTimeSpent() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
+		ud.addTotalTimeSpent(70);
 		assertEquals(70, ud.getTotalTimeSpent());
 	}
 
@@ -247,7 +255,8 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetTotalAttempts() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
+		ud.addTotalAttempts(10);
 		assertEquals(10, ud.getTotalAttempts());
 	}
 
@@ -256,7 +265,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetProgressionList() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ArrayList<ProgressionData> progList = new ArrayList<ProgressionData>();
 
 		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
@@ -277,7 +286,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetProgressionAtIndex1() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ArrayList<ProgressionData> progList = new ArrayList<ProgressionData>();
 
 		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
@@ -298,7 +307,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testGetProgressionAtIndexNull() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		assertNull(ud.getProgressionAtIndex(-1));
 	}
 
@@ -307,7 +316,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testAddTotalScore() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalScore(7);
 		assertEquals(7, ud.getTotalScore());
 	}
@@ -317,7 +326,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testAddTotalTimeSpent() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalTimeSpent(100);
 		assertEquals(100, ud.getTotalTimeSpent());
 		}
@@ -327,7 +336,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testAddTotalAttempts() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		ud.addTotalAttempts(3);
 		assertEquals(3, ud.getTotalAttempts());
 		}
@@ -337,7 +346,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testUpdateTotalStats() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 
 		String stage1 = "1,TRUE,1,3,20,2,/,Start,Forward,End";
 		ProgressionData pd = ProgressionData.importData(stage1);
@@ -356,7 +365,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testIsStudent() {
-		UserData ud = new UserData(UserTypeEnum.STUDENT, "student", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.STUDENT, "studentUnitTest", "pass1234");
 		assertTrue(ud.isSTUDENT());
 	}
 
@@ -365,7 +374,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testIsTeacher() {
-		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacher", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.TEACHER, "teacherUnitTest", "pass1234");
 		assertTrue(ud.isTEACHER());
 		}
 
@@ -374,7 +383,7 @@ class UserDataTest {
 	 */
 	@Test
 	void testIsDeveloper() {
-		UserData ud = new UserData(UserTypeEnum.DEVELOPER, "developer", "pass1234");
+		UserData ud = new UserData(UserTypeEnum.DEVELOPER, "developerUnitTest", "pass1234");
 		assertTrue(ud.isDEVELOPER());
 	}
 

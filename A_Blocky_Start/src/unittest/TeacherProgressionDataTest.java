@@ -6,10 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import mvc.TeacherProgressionData;
 
-import mvc.UserData;
-
-import java.util.ArrayList;
-
 class TeacherProgressionDataTest {
 
 	@Test
