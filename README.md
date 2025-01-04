@@ -1,6 +1,4 @@
-# README File
-
-## A Blocky Start
+# A Blocky Start
 ![Thumbnail](project_documentation/_thumbnail.png)
 
 ## 0. Copyright & Credits
